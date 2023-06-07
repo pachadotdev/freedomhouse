@@ -1,0 +1,61 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# freedom
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of freedom is to ease the usage of the Freedom in the World dataset from Freedom House in R.
+
+Freedom House is best known for political advocacy surrounding issues of Democracy, Political Freedom, and Human Rights.
+Each of these issues trascends political colours. The Freedom in the World dataset is a comprehensive and widely used
+measure of political freedom. It is used by academics, journalists, and policy makers alike.
+
+The Freedom in the World dataset is updated annually and is originally available for download in Excel format.
+
+## Installation
+
+You can install the development version of freedom from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("pachadotdev/freedom")
+```
+
+## Example
+
+This is a basic example which shows you how to join two tables
+
+```{r example, warning=FALSE, message=FALSE}
+library(dplyr)
+library(freedom)
+
+# Search for "trade union" in the sub_item_description column
+category_scores_items %>%
+  filter(grepl("trade union", sub_item_description))
+
+# Get the full description of the sub-item
+category_scores_items %>%
+  filter(sub_item == "E3") %>%
+  pull(sub_item_description)
+
+# Filter by sub-item code and country code for trade unions in Canada
+category_scores %>%
+  filter(
+    sub_item == "E3",
+    iso3c == "CAN"
+  )
+```

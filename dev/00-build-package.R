@@ -421,13 +421,57 @@ category_scores <- category_scores %>%
 
 # add iso2c, iso3c and continent
 category_scores <- category_scores %>%
-  left_join(
-    country_rating_statuses %>%
-      select(country, iso2c, iso3c, continent) %>%
-      distinct(),
-    by = c("country_territory" = "country")
+  # left_join(
+  #   country_rating_statuses %>%
+  #     select(country, iso2c, iso3c, continent) %>%
+  #     distinct(),
+  #   by = c("country_territory" = "country")
+  # ) %>%
+  mutate(
+    iso2c = countrycode(
+      country_territory,
+      origin = "country.name",
+      destination = "iso2c"
+    ),
+    iso3c = countrycode(
+      country_territory,
+      origin = "country.name",
+      destination = "iso3c"
+    ),
+    continent = countrycode(
+      country_territory,
+      origin = "country.name",
+      destination = "continent"
+    )
   ) %>%
   select(year, country_territory, iso2c, iso3c, continent, item, sub_item, score)
+
+# fix missing continents
+category_scores %>%
+  select(country_territory, continent) %>%
+  filter(is.na(continent)) %>%
+  distinct()
+
+category_scores <- category_scores %>%
+  mutate(
+    continent = case_when(
+      country_territory == "Abkhazia" ~ "Asia",
+      country_territory == "Crimea" ~ "Europe",
+      country_territory == "Eastern Donbas" ~ "Europe",
+      country_territory == "Kosovo" ~ "Europe",
+      country_territory == "Micronesia" ~ "Oceania",
+      country_territory == "Nagorno-Karabakh" ~ "Asia",
+      country_territory == "South Ossetia" ~ "Asia",
+      country_territory == "Tibet" ~ "Asia",
+      country_territory == "Transnistria" ~ "Europe",
+      TRUE ~ continent
+    )
+  )
+
+category_scores %>%
+  select(country_territory, continent) %>%
+  filter(is.na(continent)) %>%
+  distinct()
 
 # convert chr to fct and dbl to int
 category_scores <- category_scores %>%
@@ -442,5 +486,8 @@ use_data(category_scores_items, overwrite = TRUE)
 use_cc_license("by-nc-sa") # usethis version from https://github.com/r-lib/usethis/pull/1855
 use_build_ignore("dev")
 use_git_ignore(".Rproj.user")
+use_git_ignore(".Rhistory")
 document()
 check()
+
+use_readme_rmd()
