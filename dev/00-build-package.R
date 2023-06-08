@@ -478,8 +478,24 @@ category_scores <- category_scores %>%
   mutate_if(is.character, as.factor) %>%
   mutate_if(is.numeric, as.integer)
 
+unique(category_scores$sub_item)
+unique(nchar(category_scores_items$sub_item_description))
+
+category_scores_items %>%
+  mutate(n = nchar(sub_item_description)) %>%
+  arrange(n)
+
+category_scores_items %>%
+  filter(is.na(sub_item))
+
+category_scores_items %>%
+  filter(sub_item == "ad")
+
 use_data(category_scores, overwrite = TRUE)
 use_data(category_scores_items, overwrite = TRUE)
+
+category_scores_items <- category_scores_items %>%
+  filter(sub_item != "ad")
 
 # Configure package and test ----
 

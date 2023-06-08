@@ -27,12 +27,13 @@ obtains a political rights rating of 1, from 30 to 35 points a rating of 2, and 
 \itemize{
 \item \code{year}: Year of observation (2012-2022).
 \item \code{country_territory}: Country or territory name.
-\item \code{iso2c}: ISO 2-character country code. Observations with \code{NA} could not be
-matched with the \code{country_rating_statuses} table.
-\item \code{iso3c}: ISO 3-character country code. Observations with \code{NA} could not be
-matched with the \code{country_rating_statuses} table.
-\item \code{continent}: Continent name. Observations with \code{NA} could not be
-matched with the \code{country_rating_statuses} table.
+\item \code{iso2c}: ISO 2-character country code. Abkhazia, Crimea, Eastern Donbas, Kosovo,
+Micronesia, Nagorno-Karabakh, Somaliland, South Ossetia, Tibet, Transnistria do not have
+unambiguous matches and appear as 'NA'.
+\item \code{iso3c}: ISO 3-character country code. Abkhazia, Crimea, Eastern Donbas, Kosovo,
+Micronesia, Nagorno-Karabakh, Somaliland, South Ossetia, Tibet, Transnistria do not have
+unambiguous matches and appear as 'NA'.
+\item \code{continent}: Continent name.
 \item \code{item}: Item letter (A-G).
 \item \code{sub_item}: Sub-item letter and number (A1-G4).
 \item \code{score}: Score for the sub-item (0-4).

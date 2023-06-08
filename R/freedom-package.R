@@ -94,6 +94,6 @@
 #' @docType data
 #' @name category_scores_items
 #' @usage category_scores_items
-#' @format A \code{data frame} with 28 observations and 4 variables.
+#' @format A \code{data frame} with 25 observations and 4 variables.
 #' @source Adapted from Freedom House.
 "category_scores_items"

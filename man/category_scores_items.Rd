@@ -5,7 +5,7 @@
 \alias{category_scores_items}
 \title{Freedom in the World Items and Sub-Items Description, 2012-2022}
 \format{
-A \code{data frame} with 28 observations and 4 variables.
+A \code{data frame} with 25 observations and 4 variables.
 }
 \source{
 Adapted from Freedom House.
