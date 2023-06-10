@@ -71,5 +71,5 @@ category_scores %>%
       ),
     by = c("year", "iso3c", "sub_item")
   ) %>%
-  select(year, iso3c, detail)
+  select(year, iso3c, sub_item, score, detail)
 ```

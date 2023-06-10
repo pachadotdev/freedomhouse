@@ -649,16 +649,16 @@ body {
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>      ),</span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;iso3c&quot;</span>, <span class="st">&quot;sub_item&quot;</span>)</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(year, iso3c, detail)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a><span class="co">#&gt;    year iso3c detail                                                            </span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a><span class="co">#&gt;   &lt;int&gt; &lt;fct&gt; &lt;chr&gt;                                                             </span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a><span class="co">#&gt; 1  2022 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a><span class="co">#&gt; 2  2021 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a><span class="co">#&gt; 3  2020 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a><span class="co">#&gt; 4  2019 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a><span class="co">#&gt; 5  2018 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a><span class="co">#&gt; 6  2017 CAN   Trade unions and business associations enjoy high levels of membe…</span></span></code></pre></div>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(year, iso3c, sub_item, score, detail)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 6 × 5</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a><span class="co">#&gt;    year iso3c sub_item score detail                                             </span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a><span class="co">#&gt;   &lt;int&gt; &lt;fct&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;                                              </span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a><span class="co">#&gt; 1  2022 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a><span class="co">#&gt; 2  2021 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a><span class="co">#&gt; 3  2020 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a><span class="co">#&gt; 4  2019 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a><span class="co">#&gt; 5  2018 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a><span class="co">#&gt; 6  2017 CAN   E3           4 Trade unions and business associations enjoy high …</span></span></code></pre></div>
 
 </body>
 </html>
