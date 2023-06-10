@@ -18,13 +18,17 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of freedom is to ease the usage of the Freedom in the World dataset from Freedom House in R.
+The goal of freedom is to ease the usage of the Freedom in the World dataset from Freedom House in R. The Freedom in the
+World dataset is updated annually and is originally available for download in Excel format.
 
 Freedom House is best known for political advocacy surrounding issues of Democracy, Political Freedom, and Human Rights.
 Each of these issues trascends political colours. The Freedom in the World dataset is a comprehensive and widely used
 measure of political freedom. It is used by academics, journalists, and policy makers alike.
 
-The Freedom in the World dataset is updated annually and is originally available for download in Excel format.
+My added value is to presents all the tables in a really simple to use format and to make all the texts with the 
+justifications for each sub-item scores, that you find in around 1,000 links of the form 
+https://freedomhouse.org/country/canada/freedom-world/2023, available in a single tidy table. This is useful for text 
+mining and sentiment analysis.
 
 ## Installation
 
@@ -37,7 +41,7 @@ remotes::install_github("pachadotdev/freedom")
 
 ## Example
 
-This is a basic example which shows you how to join two tables
+This is a basic example which shows you how to join three tables
 
 ```{r example, warning=FALSE, message=FALSE}
 library(dplyr)
@@ -57,5 +61,15 @@ category_scores %>%
   filter(
     sub_item == "E3",
     iso3c == "CAN"
-  )
+  )  %>%
+  inner_join(
+    country_ratings_texts %>%
+      select(year, iso3c, sub_item, detail) %>%
+      filter(
+        sub_item == "E3",
+        iso3c == "CAN"
+      ),
+    by = c("year", "iso3c", "sub_item")
+  ) %>%
+  select(year, iso3c, detail)
 ```

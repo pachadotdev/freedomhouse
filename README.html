@@ -608,15 +608,15 @@ body {
 
 <!-- badges: end -->
 
-<p>The goal of freedom is to ease the usage of the Freedom in the World dataset from Freedom House in R.</p>
+<p>The goal of freedom is to ease the usage of the Freedom in the World dataset from Freedom House in R. The Freedom in the World dataset is updated annually and is originally available for download in Excel format.</p>
 <p>Freedom House is best known for political advocacy surrounding issues of Democracy, Political Freedom, and Human Rights. Each of these issues trascends political colours. The Freedom in the World dataset is a comprehensive and widely used measure of political freedom. It is used by academics, journalists, and policy makers alike.</p>
-<p>The Freedom in the World dataset is updated annually and is originally available for download in Excel format.</p>
+<p>My added value is to presents all the tables in a really simple to use format and to make all the texts with the justifications for each sub-item scores, that you find in around 1,000 links of the form <a href="https://freedomhouse.org/country/canada/freedom-world/2023">https://freedomhouse.org/country/canada/freedom-world/2023</a>, available in a single tidy table. This is useful for text mining and sentiment analysis.</p>
 <h2 id="installation">Installation</h2>
 <p>You can install the development version of freedom from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># install.packages(&quot;remotes&quot;)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;pachadotdev/freedom&quot;</span>)</span></code></pre></div>
 <h2 id="example">Example</h2>
-<p>This is a basic example which shows you how to join two tables</p>
+<p>This is a basic example which shows you how to join three tables</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">library</span>(freedom)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
@@ -639,21 +639,26 @@ body {
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>    sub_item <span class="op">==</span><span class="st"> &quot;E3&quot;</span>,</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>    iso3c <span class="op">==</span><span class="st"> &quot;CAN&quot;</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>  )</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 11 × 8</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="co">#&gt;     year country_territory iso2c iso3c continent item  sub_item score</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;             &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;fct&gt;    &lt;int&gt;</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="co">#&gt;  1  2022 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="co">#&gt;  2  2021 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="co">#&gt;  3  2020 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="co">#&gt;  4  2019 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="co">#&gt;  5  2018 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="co">#&gt;  6  2017 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="co">#&gt;  7  2016 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="co">#&gt;  8  2015 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a><span class="co">#&gt;  9  2014 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a><span class="co">#&gt; 10  2013 Canada            CA    CAN   Americas  E     E3           4</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a><span class="co">#&gt; 11  2012 Canada            CA    CAN   Americas  E     E3           4</span></span></code></pre></div>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>  )  <span class="op">%&gt;%</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="st">  </span><span class="kw">inner_join</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>    country_ratings_texts <span class="op">%&gt;%</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="st">      </span><span class="kw">select</span>(year, iso3c, sub_item, detail) <span class="op">%&gt;%</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="st">      </span><span class="kw">filter</span>(</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>        sub_item <span class="op">==</span><span class="st"> &quot;E3&quot;</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>        iso3c <span class="op">==</span><span class="st"> &quot;CAN&quot;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>      ),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;iso3c&quot;</span>, <span class="st">&quot;sub_item&quot;</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(year, iso3c, detail)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a><span class="co">#&gt;    year iso3c detail                                                            </span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a><span class="co">#&gt;   &lt;int&gt; &lt;fct&gt; &lt;chr&gt;                                                             </span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a><span class="co">#&gt; 1  2022 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a><span class="co">#&gt; 2  2021 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a><span class="co">#&gt; 3  2020 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a><span class="co">#&gt; 4  2019 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a><span class="co">#&gt; 5  2018 CAN   Trade unions and business associations enjoy high levels of membe…</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a><span class="co">#&gt; 6  2017 CAN   Trade unions and business associations enjoy high levels of membe…</span></span></code></pre></div>
 
 </body>
 </html>

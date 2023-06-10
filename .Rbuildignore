@@ -3,3 +3,6 @@
 ^LICENSE\.md$
 ^dev$
 ^README\.Rmd$
+^README\.html$
+^README_files$
+^docs$

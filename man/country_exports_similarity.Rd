@@ -18,4 +18,9 @@ Connections between countries correspond to the strongest arcs based on the prod
 The network was trimmed until obtaining an average of four arcs per node. This network was
 obtained by using UN COMTRADE data for exports, using reports from importing countries.
 }
+\references{
+Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
+Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
+Accessed 2022-10-01.
+}
 \keyword{datasets}

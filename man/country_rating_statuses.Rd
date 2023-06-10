@@ -40,4 +40,9 @@ highest degree of Freedom and seven the lowest).
 }
 }
 
+\references{
+Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
+Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
+Accessed 2022-10-01.
+}
 \keyword{datasets}

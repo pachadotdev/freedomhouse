@@ -14,13 +14,11 @@ Adapted from Freedom House.
 category_scores_items
 }
 \description{
-Freedom in the World Items and Sub-Items Description, 2012-2022
+Provides a full description for the meaning of each item and sub-item in the
+\code{category_scores} table. For example, item A corresponds to Political Rights.
 }
 \section{Variables}{
 
-
-Provides a full description for the meaning of each item and sub-item in the
-\code{category_scores} table. For example, item A corresponds to Political Rights.
 
 \itemize{
 \item \code{item}: Item letter (A-G).
@@ -30,4 +28,9 @@ Provides a full description for the meaning of each item and sub-item in the
 }
 }
 
+\references{
+Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
+Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
+Accessed 2022-10-01.
+}
 \keyword{datasets}
