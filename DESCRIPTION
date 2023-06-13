@@ -2,7 +2,7 @@ Package: freedomhouse
 Title: Freedom House's Freedom in the World
 Version: 0.0.0.9000
 Authors@R: c(
-  person("Mauricio", "Vargas",
+  person("Mauricio", "Vargas Sepulveda",
     role = c("aut","cre","cph"), 
     email = "m.sepulveda@mail.utoronto.ca",
     comment = c(ORCID = "0000-0003-1017-7574")),
