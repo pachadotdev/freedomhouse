@@ -1,14 +1,19 @@
-Package: freedom
-Title: Freedom in the World
+Package: freedomhouse
+Title: Freedom House's Freedom in the World
 Version: 0.0.0.9000
 Authors@R: c(
-  person("Mauricio", "Vargas", role = c("aut","cre","cph"), 
-   email = "mavargas11@uc.cl"),
+  person("Mauricio", "Vargas",
+    role = c("aut","cre","cph"), 
+    email = "m.sepulveda@mail.utoronto.ca",
+    comment = c(ORCID = "0000-0003-1017-7574")),
+  person("Marta", "Kolczynska", role = "ctb"),
+  person(family = "United Nations", role = "dtc"),
   person(family = "Freedom House", role = "dtc"))
 Description: Since 1973, Freedom House has assessed the condition of political 
   rights and civil liberties around the world. It is used on a regular basis by 
   policymakers, journalists, academics, activists, and many others. This
-  package makes it easier to use the FIW data within R.
+  package makes it easier to use the Freedom House's Freedom in the World data
+  within R.
 License: CC BY-NC-SA 4.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

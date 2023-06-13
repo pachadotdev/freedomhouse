@@ -6,3 +6,5 @@
 ^README\.html$
 ^README_files$
 ^docs$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
