@@ -494,11 +494,14 @@ category_scores_items %>%
 category_scores_items %>%
   filter(sub_item == "ad")
 
-use_data(category_scores, overwrite = TRUE)
-use_data(category_scores_items, overwrite = TRUE)
+category_scores <- category_scores %>%
+  filter(sub_item != "ad")
 
 category_scores_items <- category_scores_items %>%
   filter(sub_item != "ad")
+
+use_data(category_scores, overwrite = TRUE)
+use_data(category_scores_items, overwrite = TRUE)
 
 # Add texts ----
 

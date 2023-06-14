@@ -79,7 +79,7 @@
 #' @docType data
 #' @name category_scores
 #' @usage category_scores
-#' @format A \code{data frame} with 62,235 observations and 8 variables.
+#' @format A \code{data frame} with 57,625 observations and 8 variables.
 #' @source Adapted from Freedom House.
 "category_scores"
 

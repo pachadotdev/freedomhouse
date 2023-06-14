@@ -5,7 +5,7 @@
 \alias{category_scores}
 \title{Freedom in the World Dissaggregated Scores, 2012-2022}
 \format{
-A \code{data frame} with 62,235 observations and 8 variables.
+A \code{data frame} with 57,625 observations and 8 variables.
 }
 \source{
 Adapted from Freedom House.
