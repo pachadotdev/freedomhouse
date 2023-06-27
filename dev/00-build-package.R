@@ -762,6 +762,68 @@ country_ratings_texts <- country_ratings_texts %>%
 country_ratings_texts <- country_ratings_texts %>%
   select(year, country, iso2c, iso3c, continent, sub_item, detail)
 
+# country_ratings_texts_2 <- country_ratings_texts %>%
+#   mutate(detail_end = str_sub(detail, -20))
+
+# country_ratings_texts_2 <- country_ratings_texts_2 %>%
+#   distinct(detail_end)
+ 
+# readr::write_csv(country_ratings_texts_2, "dev/country_ratings_texts.csv")
+
+# remove "A Electoral Process", 
+# "B Political Pluralism and Participation"
+# "C Functioning of Government"
+# "D Freedom of Expression and Belief"
+# "E Associational and Organizational Rights"
+# "F Rule of Law"
+# "G Personal Autonomy and Individual Rights"
+# "OVERVIEW"
+# "CL Civil Liberties"
+# "PR Political Rights"
+# "1.00-4.00 pts0-4 pts" from detail
+country_ratings_texts <- country_ratings_texts %>%
+  mutate(
+    detail = str_remove_all(detail, "A Electoral Process"),
+    detail = str_remove_all(detail, "B Political Pluralism and Participation"),
+    detail = str_remove_all(detail, "C Functioning of Government"),
+    detail = str_remove_all(detail, "D Freedom of Expression and Belief"),
+    detail = str_remove_all(detail, "E Associational and Organizational Rights"),
+    detail = str_remove_all(detail, "F Rule of Law"),
+    detail = str_remove_all(detail, "G Personal Autonomy and Individual Rights"),
+    detail = str_remove_all(detail, "OVERVIEW"),
+    detail = str_remove_all(detail, "CL Civil Liberties"),
+    detail = str_remove_all(detail, "PR Political Rights"),
+    detail = str_remove_all(detail, "1.00-4.00 pts0-4 pts")
+  )
+
+# trim and remove multiple spaces
+country_ratings_texts <- country_ratings_texts %>%
+  mutate(
+    detail = str_replace_all(detail, "\\s+", " ")
+  ) %>%
+  mutate(
+    detail = str_trim(detail)
+  )
+
+# convert the detail to a vector
+detail <- country_ratings_texts$detail
+
+# split detail by sentence
+detail <- str_split(detail, "\\. ") %>%
+  unlist()
+
+# count the number of repeated sentences
+detail <- detail %>%
+  tibble(detail = .) %>%
+  group_by(detail) %>%
+  mutate(n = n()) %>%
+  ungroup()
+
+detail %>%
+  filter(detail != "") %>%
+  filter(detail != ".") %>%
+  arrange(-n)
+
 use_data(country_ratings_texts, overwrite = TRUE)
 
 # Configure package and test ----
