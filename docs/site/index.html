@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>freedomhouse</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "README.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> freedomhouse
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reference/">Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="LICENSE/">License</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">freedomhouse</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/pachadotdev/freedomhouse/edit/master/docs/README.md">Edit on freedomhouse</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<h1 id="freedom">freedom</h1>
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+<p>The goal of freedom is to ease the usage of the Freedom in the World
+dataset from Freedom House in R. The Freedom in the World dataset is
+updated annually and is originally available for download in Excel
+format.</p>
+<p>Freedom House is best known for political advocacy surrounding issues of
+Democracy, Political Freedom, and Human Rights. Each of these issues
+trascends political colours. The Freedom in the World dataset is a
+comprehensive and widely used measure of political freedom. It is used
+by academics, journalists, and policy makers alike.</p>
+<p>My added value is to presents all the tables in a really simple to use
+format and to make all the texts with the justifications for each
+sub-item scores, that you find in around 1,000 links of the form
+<a href="https://freedomhouse.org/country/canada/freedom-world/2023">https://freedomhouse.org/country/canada/freedom-world/2023</a>, available
+in a single tidy table. This is useful for text mining and sentiment
+analysis.</p>
+<h2 id="installation">Installation</h2>
+<p>You can install the development version of freedom from
+<a href="https://github.com/">GitHub</a> with:</p>
+<pre><code class="language-r"># install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;pachadotdev/freedom&quot;)
+</code></pre>
+<h2 id="example">Example</h2>
+<p>This is a basic example which shows you how to join three tables</p>
+<pre><code class="language-r">library(dplyr)
+library(freedomhouse)
+
+# Search for &quot;trade union&quot; in the sub_item_description column
+category_scores_items %&gt;%
+  filter(grepl(&quot;trade union&quot;, sub_item_description))
+#&gt; # A tibble: 1 × 4
+#&gt;   item  sub_item item_description                        sub_item_description   
+#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;                                   &lt;chr&gt;                  
+#&gt; 1 E     E3       Associational and Organizational Rights Is there freedom for t…
+
+# Get the full description of the sub-item
+category_scores_items %&gt;%
+  filter(sub_item == &quot;E3&quot;) %&gt;%
+  pull(sub_item_description)
+#&gt; [1] &quot;Is there freedom for trade unions and similar professional or labor organizations?&quot;
+
+# Filter by sub-item code and country code for trade unions in Canada
+category_scores %&gt;%
+  filter(
+    sub_item == &quot;E3&quot;,
+    iso3c == &quot;CAN&quot;
+  )  %&gt;%
+  inner_join(
+    country_ratings_texts %&gt;%
+      select(year, iso3c, sub_item, detail) %&gt;%
+      filter(
+        sub_item == &quot;E3&quot;,
+        iso3c == &quot;CAN&quot;
+      ),
+    by = c(&quot;year&quot;, &quot;iso3c&quot;, &quot;sub_item&quot;)
+  ) %&gt;%
+  select(year, iso3c, sub_item, score, detail)
+#&gt; # A tibble: 6 × 5
+#&gt;    year iso3c sub_item score detail                                             
+#&gt;   &lt;int&gt; &lt;fct&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;                                              
+#&gt; 1  2022 CAN   E3           4 Trade unions and business associations enjoy high …
+#&gt; 2  2021 CAN   E3           4 Trade unions and business associations enjoy high …
+#&gt; 3  2020 CAN   E3           4 Trade unions and business associations enjoy high …
+#&gt; 4  2019 CAN   E3           4 Trade unions and business associations enjoy high …
+#&gt; 5  2018 CAN   E3           4 Trade unions and business associations enjoy high …
+#&gt; 6  2017 CAN   E3           4 Trade unions and business associations enjoy high …
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="reference/" class="btn btn-neutral float-right" title="Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="reference/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.4.3
+Build Date UTC : 2023-06-27 01:11:44.233039+00:00
+-->

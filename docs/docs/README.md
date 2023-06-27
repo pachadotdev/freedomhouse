@@ -41,7 +41,7 @@ This is a basic example which shows you how to join three tables
 
 ``` r
 library(dplyr)
-library(freedom)
+library(freedomhouse)
 
 # Search for "trade union" in the sub_item_description column
 category_scores_items %>%

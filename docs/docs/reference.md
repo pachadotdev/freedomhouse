@@ -60,7 +60,7 @@ points a rating of 2, and so on.
 
 ### Format
 
-A `data frame` with 62,235 observations and 8 variables.
+A `data frame` with 57,625 observations and 8 variables.
 
 ### Variables
 
