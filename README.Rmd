@@ -13,22 +13,29 @@ knitr::opts_chunk$set(
 )
 ```
 
-# freedom
+# Freedom House Datasets in R
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of freedom is to ease the usage of the Freedom in the World dataset from Freedom House in R. The Freedom in the
-World dataset is updated annually and is originally available for download in Excel format.
+The goal of freedomhouse is to ease the usage of the Freedom in the World
+dataset from Freedom House in R. The Freedom in the World dataset is updated
+annually and is originally available for download in Excel format.
 
-Freedom House is best known for political advocacy surrounding issues of Democracy, Political Freedom, and Human Rights.
-Each of these issues trascends political colours. The Freedom in the World dataset is a comprehensive and widely used
-measure of political freedom. It is used by academics, journalists, and policy makers alike.
+Freedom House is best known for political advocacy surrounding issues of 
+Democracy, Political Freedom, and Human Rights. Each of these issues trascends
+political colours. The Freedom in the World dataset is a comprehensive and
+widely used measure of political freedom. It is used by academics, journalists,
+and policy makers alike.
 
-My added value is to presents all the tables in a really simple to use format and to make all the texts with the 
-justifications for each sub-item scores, that you find in around 1,000 links of the form 
-https://freedomhouse.org/country/canada/freedom-world/2023, available in a single tidy table. This is useful for text 
-mining and sentiment analysis.
+My added value is to presents all the tables in a really simple to use format
+and to make all the texts with the justifications for each sub-item scores,
+that you find in around 1,000 links of the form 
+https://freedomhouse.org/country/canada/freedom-world/2023, available in a
+single tidy table. This is useful for text mining and sentiment analysis.
+
+Another addition of mine was is to add translations, such as the side package
+`casadelalibertad`.
 
 ## Installation
 
@@ -39,13 +46,19 @@ You can install the development version of freedom from [GitHub](https://github.
 remotes::install_github("pachadotdev/freedom")
 ```
 
+To install a translation, such as the Spanish translation, you can use:
+
+```r
+remotes::install_github("pachadotdev/casadelalibertad", subdir = "translations/es")
+```
+
 ## Example
 
 This is a basic example which shows you how to join three tables
 
 ```{r example, warning=FALSE, message=FALSE}
 library(dplyr)
-library(freedom)
+library(freedomhouse)
 
 # Search for "trade union" in the sub_item_description column
 category_scores_items %>%
@@ -72,4 +85,83 @@ category_scores %>%
     by = c("year", "iso3c", "sub_item")
   ) %>%
   select(year, iso3c, sub_item, score, detail)
+```
+
+## Translations
+
+### Spanish
+
+## Traducciones
+
+Las traducciones disponibles dentro de `casadelalibertad` son las siguientes:
+
+```{r es1, echo = FALSE}
+library(purrr)
+library(yaml)
+
+specs <- list.files("inst/specs")
+all <- map(file.path("inst", "specs", specs), read_yaml)
+sources <- map_chr(all, ~ .x$df$source)
+
+pkgs <- tibble(
+  Nombre = map_chr(all, ~ .x$df$name),
+  Titulo = map_chr(all, ~ .x$help$title),
+  Dataset = map_chr(strsplit(sources, "::"), ~ .x[[2]])
+)
+
+pkgs %>%
+  arrange(Dataset) %>%
+  knitr::kable()
+```
+
+El paquete `casadelalibertad` se carga igual que todos los paquetes de R: 
+
+```{r es2}
+library(casadelalibertad)
+library(dplyr)
+```
+
+Las variables que contienen los datos van a estar disponibles inmediatamente
+para su uso, pero los datos no se traducirán hasta que la variable sea "llamada"
+explícitamente en el código que se escriba. En este ejemplo, el _dataset_
+`puntajes_por_categoria`, que proviene de `freedomhouse::category_scores`, se 
+carga en la memoria de R en el momento en que lo llamamos por primera vez en 
+español:
+
+```{r es3}
+glimpse(puntajes_por_categoria)
+```
+
+Los datos traducidos quedarán cargados durante toda la sesión de R:
+
+```{r es4}
+puntajes_por_categoria %>%
+  filter(pais_territorio == "Canad\u00e1")
+```
+
+## Development
+
+(This is a note for myself)
+
+1. Open `translations/es`.
+
+2. Document:
+
+```r
+devtools::load_all()
+writeLines(create_rd("inst/specs/category_scores.yml"),
+  "man/puntajes_por_categoria.Rd")
+```
+
+3. Verify:
+
+```r
+attachment::att_amend_desc()
+devtools::check()
+```
+
+4. Fix non-ASCII characters:
+
+```bash
+casadelalibertad (main) $ bash dev/fix_non_ascii.sh 
 ```

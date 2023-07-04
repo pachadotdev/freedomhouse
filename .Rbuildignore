@@ -1,4 +1,4 @@
-^freedom\.Rproj$
+^freedomhouse\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^dev$
@@ -8,3 +8,4 @@
 ^docs$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^translations$

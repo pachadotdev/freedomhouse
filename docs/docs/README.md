@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# freedom
+# Freedom House Datasets in R
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-The goal of freedom is to ease the usage of the Freedom in the World
-dataset from Freedom House in R. The Freedom in the World dataset is
-updated annually and is originally available for download in Excel
+The goal of freedomhouse is to ease the usage of the Freedom in the
+World dataset from Freedom House in R. The Freedom in the World dataset
+is updated annually and is originally available for download in Excel
 format.
 
 Freedom House is best known for political advocacy surrounding issues of
@@ -25,6 +25,9 @@ sub-item scores, that you find in around 1,000 links of the form
 in a single tidy table. This is useful for text mining and sentiment
 analysis.
 
+Another addition of mine was is to add translations, such as the side
+package `casadelalibertad`.
+
 ## Installation
 
 You can install the development version of freedom from
@@ -33,6 +36,12 @@ You can install the development version of freedom from
 ``` r
 # install.packages("remotes")
 remotes::install_github("pachadotdev/freedom")
+```
+
+To install a translation, such as the Spanish translation, you can use:
+
+``` r
+remotes::install_github("pachadotdev/casadelalibertad", subdir = "translations/es")
 ```
 
 ## Example
@@ -82,4 +91,99 @@ category_scores %>%
 #> 4  2019 CAN   E3           4 Trade unions and business associations enjoy high …
 #> 5  2018 CAN   E3           4 Trade unions and business associations enjoy high …
 #> 6  2017 CAN   E3           4 Trade unions and business associations enjoy high …
+```
+
+## Translations
+
+### Spanish
+
+## Traducciones
+
+Las traducciones disponibles dentro de `casadelalibertad` son las
+siguientes:
+
+| Nombre | Titulo | Dataset |
+| :----- | :----- | :------ |
+
+El paquete `casadelalibertad` se carga igual que todos los paquetes de
+R:
+
+``` r
+library(casadelalibertad)
+library(dplyr)
+```
+
+Las variables que contienen los datos van a estar disponibles
+inmediatamente para su uso, pero los datos no se traducirán hasta que la
+variable sea “llamada” explícitamente en el código que se escriba. En
+este ejemplo, el *dataset* `puntajes_por_categoria`, que proviene de
+`freedomhouse::category_scores`, se carga en la memoria de R en el
+momento en que lo llamamos por primera vez en español:
+
+``` r
+glimpse(puntajes_por_categoria)
+#> Rows: 57,625
+#> Columns: 8
+#> $ anio            <int> 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, …
+#> $ pais_territorio <fct> Abjasia, Abjasia, Abjasia, Abjasia, Abjasia, Abjasia, …
+#> $ iso2c           <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+#> $ iso3c           <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+#> $ continente      <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+#> $ item            <fct> A, A, A, B, B, B, B, C, C, C, D, D, D, D, E, E, E, F, …
+#> $ sub_item        <fct> A1, A2, A3, B1, B2, B3, B4, C1, C2, C3, D1, D2, D3, D4…
+#> $ puntaje         <int> 2, 2, 1, 2, 3, 2, 1, 1, 1, 2, 2, 2, 1, 3, 3, 1, 1, 1, …
+```
+
+Los datos traducidos quedarán cargados durante toda la sesión de R:
+
+``` r
+puntajes_por_categoria %>%
+  filter(pais_territorio == "Canad\u00e1")
+#> # A tibble: 275 × 8
+#>     anio pais_territorio iso2c iso3c continente   item  sub_item puntaje
+#>    <int> <fct>           <fct> <fct> <fct>        <fct> <fct>      <int>
+#>  1  2022 Canadá          CA    CAN   Las Américas A     A1             4
+#>  2  2022 Canadá          CA    CAN   Las Américas A     A2             4
+#>  3  2022 Canadá          CA    CAN   Las Américas A     A3             4
+#>  4  2022 Canadá          CA    CAN   Las Américas B     B1             4
+#>  5  2022 Canadá          CA    CAN   Las Américas B     B2             4
+#>  6  2022 Canadá          CA    CAN   Las Américas B     B3             4
+#>  7  2022 Canadá          CA    CAN   Las Américas B     B4             4
+#>  8  2022 Canadá          CA    CAN   Las Américas C     C1             4
+#>  9  2022 Canadá          CA    CAN   Las Américas C     C2             4
+#> 10  2022 Canadá          CA    CAN   Las Américas C     C3             4
+#> # ℹ 265 more rows
+```
+
+## Development
+
+(This is a note for myself)
+
+1.  Open `translations/es`.
+
+2.  Document:
+
+<!-- end list -->
+
+``` r
+devtools::load_all()
+writeLines(create_rd("inst/specs/category_scores.yml"),
+  "man/puntajes_por_categoria.Rd")
+```
+
+3.  Verify:
+
+<!-- end list -->
+
+``` r
+attachment::att_amend_desc()
+devtools::check()
+```
+
+4.  Fix non-ASCII characters:
+
+<!-- end list -->
+
+``` bash
+casadelalibertad (main) $ bash dev/fix_non_ascii.sh 
 ```

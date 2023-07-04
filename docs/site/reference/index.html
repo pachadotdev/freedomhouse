@@ -77,7 +77,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#country-exports-similarity">Country exports similarity</a>
+    <li class="toctree-l2"><a class="reference internal" href="#country-rating-statuses">Country rating statuses</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#description_2">Description</a>
     </li>
@@ -85,13 +85,15 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#format_2">Format</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#variables_2">Variables</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#source_2">Source</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#references_1">References</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#country-rating-statuses">Country rating statuses</a>
+    <li class="toctree-l2"><a class="reference internal" href="#country-ratings-texts">Country ratings texts</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#description_3">Description</a>
     </li>
@@ -99,27 +101,11 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#format_3">Format</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#variables_2">Variables</a>
+    <li class="toctree-l3"><a class="reference internal" href="#variables_3">Variables</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#source_3">Source</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#references_2">References</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#country-ratings-texts">Country ratings texts</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#description_4">Description</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#usage_4">Usage</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#format_4">Format</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#variables_3">Variables</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#source_4">Source</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#references_3">References</a>
     </li>
         </ul>
     </li>
@@ -197,7 +183,7 @@ can be summed up to obtain the <code>political_rights</code> aggregate score (su
 of items A to C) and <code>civil_liberties</code> aggregate score (items D to G).
 The sub-items are scored from 0 to 4, with 0 representing the lowest
 degree of achievement in a given category and 4 the highest. For
-example, a country that sums 36 or more points in the political rights
+example, a country with 36 or more points in the political rights
 aggregate score obtains a political rights rating of 1, from 30 to 35
 points a rating of 2, and so on.</p>
 <h3 id="usage_1">Usage</h3>
@@ -241,39 +227,18 @@ points a rating of 2, and so on.</p>
 <h3 id="source_1">Source</h3>
 <p>Adapted from Freedom House.</p>
 <hr />
-<h2 id="country-exports-similarity">Country exports similarity</h2>
-<hr />
-<h3 id="description_2">Description</h3>
-<p>Connections between countries correspond to the strongest arcs based on
-the products they export. The network was trimmed until obtaining an
-average of four arcs per node. This network was obtained by using UN
-COMTRADE data for exports, using reports from importing countries.</p>
-<h3 id="usage_2">Usage</h3>
-<pre><code>country_exports_similarity
-</code></pre>
-<h3 id="format_2">Format</h3>
-<p>A <code>igraph</code> object with 190 vertices (nodes) and 316 edges (arcs).</p>
-<h3 id="source_2">Source</h3>
-<p>Adapted from the United Nations (trade volumes) and Freedom House
-(freedom information).</p>
-<h3 id="references_1">References</h3>
-<p>Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the
-Struggle for Democracy. Washington, DC: Freedom House.
-https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
-Accessed 2022-10-01.</p>
-<hr />
 <h2 id="country-rating-statuses">Country rating statuses</h2>
 <hr />
-<h3 id="description_3">Description</h3>
+<h3 id="description_2">Description</h3>
 <p>For each country and territory, Freedom in the World analyzes the
 electoral process, political pluralism and participation, the
 functioning of the government, freedom of expression and of belief,
 associational and organizational rights, the rule of law, and personal
 autonomy and individual rights.</p>
-<h3 id="usage_3">Usage</h3>
+<h3 id="usage_2">Usage</h3>
 <pre><code>country_rating_statuses
 </code></pre>
-<h3 id="format_3">Format</h3>
+<h3 id="format_2">Format</h3>
 <p>A <code>data frame</code> with 9,043 observations and 9 variables.</p>
 <h3 id="variables_2">Variables</h3>
 <ul>
@@ -315,9 +280,9 @@ autonomy and individual rights.</p>
 <p><code>color</code>: Color associated with the status of the country.</p>
 </li>
 </ul>
-<h3 id="source_3">Source</h3>
+<h3 id="source_2">Source</h3>
 <p>Adapted from Freedom House.</p>
-<h3 id="references_2">References</h3>
+<h3 id="references_1">References</h3>
 <p>Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the
 Struggle for Democracy. Washington, DC: Freedom House.
 https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
@@ -325,14 +290,14 @@ Accessed 2022-10-01.</p>
 <hr />
 <h2 id="country-ratings-texts">Country ratings texts</h2>
 <hr />
-<h3 id="description_4">Description</h3>
+<h3 id="description_3">Description</h3>
 <p>Provides the text for each sub-item in the <code>category_scores</code> table. For
 each sub-item the text corresponds to the justification for the assigned
 score.</p>
-<h3 id="usage_4">Usage</h3>
+<h3 id="usage_3">Usage</h3>
 <pre><code>country_ratings_texts
 </code></pre>
-<h3 id="format_4">Format</h3>
+<h3 id="format_3">Format</h3>
 <p>A <code>data frame</code> with 27,803 observations and 7 variables.</p>
 <h3 id="variables_3">Variables</h3>
 <ul>
@@ -365,9 +330,9 @@ score.</p>
     sub-item.</p>
 </li>
 </ul>
-<h3 id="source_4">Source</h3>
+<h3 id="source_3">Source</h3>
 <p>Own creation, based on texts scraped from Freedom House.</p>
-<h3 id="references_3">References</h3>
+<h3 id="references_2">References</h3>
 <p>Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the
 Struggle for Democracy. Washington, DC: Freedom House.
 https://freedomhouse.org/report/freedom-world/2023/marking-50-years.

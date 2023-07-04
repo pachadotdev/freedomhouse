@@ -47,6 +47,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#translations">Translations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#spanish">Spanish</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#traducciones">Traducciones</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#development">Development</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -84,14 +94,14 @@
               
                 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<h1 id="freedom">freedom</h1>
+<h1 id="freedom-house-datasets-in-r">Freedom House Datasets in R</h1>
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-<p>The goal of freedom is to ease the usage of the Freedom in the World
-dataset from Freedom House in R. The Freedom in the World dataset is
-updated annually and is originally available for download in Excel
+<p>The goal of freedomhouse is to ease the usage of the Freedom in the
+World dataset from Freedom House in R. The Freedom in the World dataset
+is updated annually and is originally available for download in Excel
 format.</p>
 <p>Freedom House is best known for political advocacy surrounding issues of
 Democracy, Political Freedom, and Human Rights. Each of these issues
@@ -104,11 +114,16 @@ sub-item scores, that you find in around 1,000 links of the form
 <a href="https://freedomhouse.org/country/canada/freedom-world/2023">https://freedomhouse.org/country/canada/freedom-world/2023</a>, available
 in a single tidy table. This is useful for text mining and sentiment
 analysis.</p>
+<p>Another addition of mine was is to add translations, such as the side
+package <code>casadelalibertad</code>.</p>
 <h2 id="installation">Installation</h2>
 <p>You can install the development version of freedom from
 <a href="https://github.com/">GitHub</a> with:</p>
 <pre><code class="language-r"># install.packages(&quot;remotes&quot;)
 remotes::install_github(&quot;pachadotdev/freedom&quot;)
+</code></pre>
+<p>To install a translation, such as the Spanish translation, you can use:</p>
+<pre><code class="language-r">remotes::install_github(&quot;pachadotdev/casadelalibertad&quot;, subdir = &quot;translations/es&quot;)
 </code></pre>
 <h2 id="example">Example</h2>
 <p>This is a basic example which shows you how to join three tables</p>
@@ -154,6 +169,99 @@ category_scores %&gt;%
 #&gt; 4  2019 CAN   E3           4 Trade unions and business associations enjoy high …
 #&gt; 5  2018 CAN   E3           4 Trade unions and business associations enjoy high …
 #&gt; 6  2017 CAN   E3           4 Trade unions and business associations enjoy high …
+</code></pre>
+<h2 id="translations">Translations</h2>
+<h3 id="spanish">Spanish</h3>
+<h2 id="traducciones">Traducciones</h2>
+<p>Las traducciones disponibles dentro de <code>casadelalibertad</code> son las
+siguientes:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Nombre</th>
+<th align="left">Titulo</th>
+<th align="left">Dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>El paquete <code>casadelalibertad</code> se carga igual que todos los paquetes de
+R:</p>
+<pre><code class="language-r">library(casadelalibertad)
+library(dplyr)
+</code></pre>
+<p>Las variables que contienen los datos van a estar disponibles
+inmediatamente para su uso, pero los datos no se traducirán hasta que la
+variable sea “llamada” explícitamente en el código que se escriba. En
+este ejemplo, el <em>dataset</em> <code>puntajes_por_categoria</code>, que proviene de
+<code>freedomhouse::category_scores</code>, se carga en la memoria de R en el
+momento en que lo llamamos por primera vez en español:</p>
+<pre><code class="language-r">glimpse(puntajes_por_categoria)
+#&gt; Rows: 57,625
+#&gt; Columns: 8
+#&gt; $ anio            &lt;int&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, …
+#&gt; $ pais_territorio &lt;fct&gt; Abjasia, Abjasia, Abjasia, Abjasia, Abjasia, Abjasia, …
+#&gt; $ iso2c           &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+#&gt; $ iso3c           &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+#&gt; $ continente      &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+#&gt; $ item            &lt;fct&gt; A, A, A, B, B, B, B, C, C, C, D, D, D, D, E, E, E, F, …
+#&gt; $ sub_item        &lt;fct&gt; A1, A2, A3, B1, B2, B3, B4, C1, C2, C3, D1, D2, D3, D4…
+#&gt; $ puntaje         &lt;int&gt; 2, 2, 1, 2, 3, 2, 1, 1, 1, 2, 2, 2, 1, 3, 3, 1, 1, 1, …
+</code></pre>
+<p>Los datos traducidos quedarán cargados durante toda la sesión de R:</p>
+<pre><code class="language-r">puntajes_por_categoria %&gt;%
+  filter(pais_territorio == &quot;Canad\u00e1&quot;)
+#&gt; # A tibble: 275 × 8
+#&gt;     anio pais_territorio iso2c iso3c continente   item  sub_item puntaje
+#&gt;    &lt;int&gt; &lt;fct&gt;           &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt; &lt;fct&gt;      &lt;int&gt;
+#&gt;  1  2022 Canadá          CA    CAN   Las Américas A     A1             4
+#&gt;  2  2022 Canadá          CA    CAN   Las Américas A     A2             4
+#&gt;  3  2022 Canadá          CA    CAN   Las Américas A     A3             4
+#&gt;  4  2022 Canadá          CA    CAN   Las Américas B     B1             4
+#&gt;  5  2022 Canadá          CA    CAN   Las Américas B     B2             4
+#&gt;  6  2022 Canadá          CA    CAN   Las Américas B     B3             4
+#&gt;  7  2022 Canadá          CA    CAN   Las Américas B     B4             4
+#&gt;  8  2022 Canadá          CA    CAN   Las Américas C     C1             4
+#&gt;  9  2022 Canadá          CA    CAN   Las Américas C     C2             4
+#&gt; 10  2022 Canadá          CA    CAN   Las Américas C     C3             4
+#&gt; # ℹ 265 more rows
+</code></pre>
+<h2 id="development">Development</h2>
+<p>(This is a note for myself)</p>
+<ol>
+<li>
+<p>Open <code>translations/es</code>.</p>
+</li>
+<li>
+<p>Document:</p>
+</li>
+</ol>
+<!-- end list -->
+
+<pre><code class="language-r">devtools::load_all()
+writeLines(create_rd(&quot;inst/specs/category_scores.yml&quot;),
+  &quot;man/puntajes_por_categoria.Rd&quot;)
+</code></pre>
+<ol>
+<li>Verify:</li>
+</ol>
+<!-- end list -->
+
+<pre><code class="language-r">attachment::att_amend_desc()
+devtools::check()
+</code></pre>
+<ol>
+<li>Fix non-ASCII characters:</li>
+</ol>
+<!-- end list -->
+
+<pre><code class="language-bash">casadelalibertad (main) $ bash dev/fix_non_ascii.sh 
 </code></pre>
               
             </div>
@@ -202,5 +310,5 @@ category_scores %&gt;%
 
 <!--
 MkDocs version : 1.4.3
-Build Date UTC : 2023-06-27 01:11:44.233039+00:00
+Build Date UTC : 2023-07-04 23:05:12.818875+00:00
 -->
