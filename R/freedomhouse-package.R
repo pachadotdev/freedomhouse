@@ -34,29 +34,13 @@
 #' Accessed 2022-10-01.
 "country_rating_statuses"
 
-#' Trade Network Coloured by Freedom Status
-#'
-#' Connections between countries correspond to the strongest arcs based on the products they export.
-#' The network was trimmed until obtaining an average of four arcs per node. This network was
-#' obtained by using UN COMTRADE data for exports, using reports from importing countries.
-#'
-#' @docType data
-#' @name country_exports_similarity
-#' @usage country_exports_similarity
-#' @format A \code{igraph} object with 190 vertices (nodes) and 316 edges (arcs).
-#' @source Adapted from the United Nations (trade volumes) and Freedom House (freedom information).
-#' @references Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
-#' Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
-#' Accessed 2022-10-01.
-"country_exports_similarity"
-
 #' Freedom in the World Dissaggregated Scores, 2012-2022
 #' 
 #' Adding to the \code{country_rating_statuses} table, the items displayed here can be summed up
 #' to obtain the \code{political_rights} aggregate score (sum of items A to C) and 
 #' \code{civil_liberties} aggregate score (items D to G). The sub-items are scored from 0 to 4, 
 #' with 0 representing the lowest degree of achievement in a given category and 4 the highest.
-#' For example, a country that sums 36 or more points in the political rights aggregate score 
+#' For example, a country with 36 or more points in the political rights aggregate score 
 #' obtains a political rights rating of 1, from 30 to 35 points a rating of 2, and so on.
 #' 
 #' @section Variables:

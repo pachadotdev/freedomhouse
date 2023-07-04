@@ -18,7 +18,7 @@ Adding to the \code{country_rating_statuses} table, the items displayed here can
 to obtain the \code{political_rights} aggregate score (sum of items A to C) and
 \code{civil_liberties} aggregate score (items D to G). The sub-items are scored from 0 to 4,
 with 0 representing the lowest degree of achievement in a given category and 4 the highest.
-For example, a country that sums 36 or more points in the political rights aggregate score
+For example, a country with 36 or more points in the political rights aggregate score
 obtains a political rights rating of 1, from 30 to 35 points a rating of 2, and so on.
 }
 \section{Variables}{
