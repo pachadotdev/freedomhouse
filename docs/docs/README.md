@@ -35,13 +35,13 @@ You can install the development version of freedom from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("pachadotdev/freedom")
+remotes::install_github("pachadotdev/freedomhouse")
 ```
 
 To install a translation, such as the Spanish translation, you can use:
 
 ``` r
-remotes::install_github("pachadotdev/casadelalibertad", subdir = "translations/es")
+remotes::install_github("pachadotdev/freedomhouse", subdir = "translations/es")
 ```
 
 ## Example

@@ -1,0 +1,308 @@
+df:
+  source: freedomhouse::country_scores
+  name: puntaje_pais
+variables:
+  year:
+    trans: anio
+    desc: "A\u00f1o de la observaci\u00f3n (2012-2022)"
+  country_territory:
+    trans: pais_territorio
+    desc: "Nombre del pa\u00eds o territorio"
+    values:
+      Abkhazia: Abjasia
+      Afghanistan: "Afganist\u00e1n"
+      Albania: Albania
+      Algeria: Argelia
+      Andorra: Andorra
+      Angola: Angola
+      Antigua and Barbuda: Antigua y Barbuda
+      Argentina: Argentina
+      Armenia: Armenia
+      Australia: Australia
+      Austria: Austria
+      Azerbaijan: Azerbaiy\u00e1n
+      Bahamas: Bahamas
+      Bahrain: "Bar\u00e9in"
+      Bangladesh: Bangladesh
+      Barbados: Barbados
+      Belarus: Bielorrusia
+      Belgium: "B\u00e9lgica"
+      Belize: Belice
+      Benin: "Ben\u00edn"
+      Bhutan: "But\u00e1n"
+      Bolivia: Bolivia
+      Bosnia and Herzegovina: Bosnia y Herzegovina
+      Botswana: Botsuana
+      Brazil: Brasil
+      Brunei: "Brun\u00e9i"
+      Bulgaria: Bulgaria
+      Burkina Faso: Burkina Faso
+      Burundi: Burundi
+      Cabo Verde: "Cabo Verde"
+      Cambodia: Camboya
+      Cameroon: "Camer\u00fan"
+      Canada: "Canad\u00e1"
+      Central African Republic: "Rep\u00fablica Centroafricana"
+      Chad: Chad
+      Chile: Chile
+      China: China
+      Colombia: Colombia
+      Comoros: Comoras
+      Congo (Brazzaville): "Rep\u00fablica del Congo"
+      Congo (Kinshasa): "Rep\u00fablica Democr\u00e1tica del Congo"
+      Costa Rica: Costa Rica
+      Cote d'Ivoire: Costa de Marfil
+      Crimea: Crimea
+      Croatia: Croacia
+      Cuba: Cuba
+      Cyprus: Chipre
+      Czech Republic: "Rep\u00fablica Checa"
+      Denmark: Dinamarca
+      Djibouti: Yibuti
+      Dominica: Dominica
+      Dominican Republic: "Rep\u00fablica Dominicana"
+      Eastern Donbas: "Donb\u00e1s Oriental"
+      Ecuador: Ecuador
+      Egypt: Egipto
+      El Salvador: El Salvador
+      Equatorial Guinea: Guinea Ecuatorial
+      Eritrea: Eritrea
+      Estonia: Estonia
+      Eswatini: Suazilandia
+      Ethiopia: Etiop\u00eda
+      Fiji: Fiyi
+      Finland: Finlandia
+      France: Francia
+      Gabon: Gab\u00f3n
+      Gaza Strip: Franja de Gaza
+      Georgia: Georgia
+      Germany: Alemania
+      Ghana: Ghana
+      Greece: Grecia
+      Grenada: Granada
+      Guatemala: Guatemala
+      Guinea: Guinea
+      Guinea-Bissau: "Guinea-Bis\u00e1u"
+      Guyana: Guyana
+      Haiti: "Hait\u00ed"
+      Honduras: Honduras
+      Hong Kong: Hong Kong
+      Hungary: "Hungr\u00eda"
+      Iceland: Islandia
+      India: India
+      Indian Kashmir: Cachemira
+      Indonesia: Indonesia
+      Iran: "Ir\u00e1n"
+      Iraq: Irak
+      Ireland: Irlanda
+      Israel: Israel
+      Italy: Italia
+      Jamaica: Jamaica
+      Japan: "Jap\u00f3n"
+      Jordan: Jordania
+      Kazakhstan: "Kazajist\u00e1n"
+      Kenya: Kenia
+      Kiribati: Kiribati
+      Kosovo: Kosovo
+      Kuwait: Kuwait
+      Kyrgyzstan: "Kirguist\u00e1n"
+      Laos: Laos
+      Latvia: Letonia
+      Lebanon: "L\u00edbano"
+      Lesotho: Lesoto
+      Liberia: Liberia
+      Libya: Libia
+      Liechtenstein: Liechtenstein
+      Lithuania: Lituania
+      Luxembourg: Luxemburgo
+      Madagascar: Madagascar
+      Malawi: Malaui
+      Malaysia: Malasia
+      Maldives: Maldivas
+      Mali: "Mal\u00ed"
+      Malta: Malta
+      Marshall Islands: Islas Marshall
+      Mauritania: Mauritania
+      Mauritius: Mauricio
+      Mexico: "M\u00e9xico"
+      Micronesia: Micronesia
+      Moldova: Moldavia
+      Monaco: "M\u00f3naco"
+      Mongolia: Mongolia
+      Montenegro: Montenegro
+      Morocco: Marruecos
+      Mozambique: Mozambique
+      Myanmar: Birmania
+      Nagorno-Karabakh: Nagorno-Karabaj
+      Namibia: Namibia
+      Nauru: Nauru
+      Nepal: Nepal
+      Netherlands: Holanda
+      New Zealand: Nueva Zelanda
+      Nicaragua: Nicaragua
+      Niger: "N\u00edger"
+      Nigeria: Nigeria
+      North Korea: "Corea del Norte"
+      North Macedonia: Macedonia del Norte
+      Northern Cyprus: Chipre del Norte
+      Norway: Noruega
+      Oman: "Om\u00e1n"
+      Pakistan: "Pakist\u00e1n"
+      Pakistan Kashmir: "Cachemira Pakistan\u00ed"
+      Palau: Palaos
+      Panama: "Panam\u00e1"
+      Papua New Guinea: "Pap\u00faa Nueva Guinea"
+      Paraguay: Paraguay
+      Peru: "Per\u00fa"
+      Philippines: Filipinas
+      Poland: Polonia
+      Portugal: Portugal
+      Puerto Rico: Puerto Rico
+      Qatar: Catar
+      Romania: Rumania
+      Russia: Rusia
+      Rwanda: Ruanda
+      Samoa: Samoa
+      San Marino: San Marino
+      Sao Tome and Principe: "Santo Tom\u00e9 y Pr\u00edncipe"
+      Saudi Arabia: "Arabia Saudita"
+      Senegal: Senegal
+      Serbia: Serbia
+      Seychelles: Seychelles
+      Sierra Leone: Sierra Leona
+      Singapore: Singapur
+      Slovakia: Eslovaquia
+      Slovenia: Eslovenia
+      Solomon Islands: "Islas Salom\u00f3n"
+      Somalia: Somalia
+      Somaliland: Somalilandia
+      South Africa: "Sud\u00e1frica"
+      South Korea: Corea del Sur
+      South Ossetia: Osetia del Sur
+      South Sudan: "Sud\u00e1n del Sur"
+      Spain: "Espa\u00f1a"
+      Sri Lanka: Sri Lanka
+      St. Kitts and Nevis: "San Crist\u00f3bal y Nieves"
+      St. Lucia: "Santa Luc\u00eda"
+      St. Vincent and the Grenadines: San Vicente y las Granadinas
+      Sudan: "Sud\u00e1n"
+      Suriname: Surinam
+      Sweden: Suecia
+      Switzerland: Suiza
+      Syria: Siria
+      Taiwan: "Taiw\u00e1n"
+      Tajikistan: "Tayikist\u00e1n"
+      Tanzania: Tanzania
+      Thailand: Tailandia
+      The Gambia: Gambia
+      Tibet: "T\u00edb\u00e9t"
+      Timor-Leste: Timor Oriental
+      Togo: Togo
+      Tonga: Tonga
+      Transnitria: Transnistria
+      Trinidad and Tobago: Trinidad y Tobago
+      Tunisia: "T\u00fanez"
+      Turkey: "Turqu\u00eda"
+      Turkmenistan: "Turkmenist\u00e1n"
+      Tuvalu: Tuvalu
+      Uganda: Uganda
+      Ukraine: Ucrania
+      United Arab Emirates: "Emiratos \u00c1rabes Unidos"
+      United Kingdom: Reino Unido
+      United States: Estados Unidos
+      Uruguay: Uruguay
+      Uzbekistan: "Uzbekist\u00e1n"
+      Vanuatu: Vanuatu
+      Venezuela: Venezuela
+      Vietnam: Vietnam
+      West Bank: Cisjordania
+      Western Sahara: Sahara Occidental
+      Yemen: Yemen
+      Zambia: Zambia
+      Zimbabwe: Zimbabue
+  iso2c:
+    trans: iso2c
+    desc: "C\u00f3digo ISO de dos d\u00edgitos del pa\u00eds o territorio. 
+    Abjasia, Crimea, Kosovo, Nagorno-Karabaj, Osetia del Sur, Palestina, Sahara
+    Occidental y Transnistria no tienen una correspondencia inambigua y aparecen
+    como 'NA'"
+  iso3c:
+    trans: iso3c
+    desc: "C\u00f3digo ISO de tres d\u00edgitos del pa\u00eds o territorio.
+    Sigue el mismo criterio para los 'NA' que la variable iso2c."
+  continent:
+    trans: continente
+    values:
+      Africa: "\u00c1frica"
+      Asia: Asia
+      Europe: Europa
+      Americas: "Las Am\u00e9ricas"
+      Oceania: "Ocean\u00eda"
+    desc: Nombre del continente.
+  item:
+    trans: categoria
+    desc: "Letra de la categor\u00eda (A-G)."
+  sub_item:
+    trans: sub_categoria
+    desc: "Letra y n\u00famero de la sub-categor\u00eda (A1-G4)."
+  item_description:
+    trans: descripcion_categoria
+    desc: "Descripci\u00f3n de la categor\u00eda."
+    values:
+      Associational and Organizational Rights: "Derechos de asociaci\u00f3n y
+        organizaci\u00f3n"
+      Freedom of Expression and Belief: "Libertad de expresi\u00f3n y culto"
+      Functioning of Government: "Funcionamiento del gobierno"
+      Personal Autonomy and Individual Rights: "Autonom\u00eda personal y
+        derechos individuales"
+      Political Pluralism and Participation: "Pluralismo pol\u00edtico y
+        participaci\u00f3n"
+      Political Rights: "Derechos pol\u00edticos"
+      Rule of Law: "Estado de derecho"
+  sub_item_description:
+    trans: descripcion_sub_categoria
+    desc: "Descripci\u00f3n de la sub-categor\u00eda."
+    values:
+      Are individuals able to exercise the right to own property and establish private businesses without undue interference from state or nonstate actors?: "\u00bfPueden los individuos ejercer el derecho a la propiedad y establecer negocios privados sin interferencia indebida de actores estatales o no estatales?"
+      Are individuals free to express their personal views on political or other sensitive topics without fear of surveillance or retribution?: "\u00bfSon los individuos libres de expresar sus opiniones personales sobre temas pol\u00edticos u otros temas sensibles sin temor a la vigilancia o represalias?"
+      Are individuals free to practice and express their religious faith or nonbelief in public and private?: "\u00bfSon los individuos libres de practicar y expresar su fe religiosa o no creencia en p\u00fablico y en privado?"
+      Are safeguards against official corruption strong and effective?: "\u00bfSon las salvaguardas contra la corrupci\u00f3n de oficiales de gobierno fuertes y efectivas?"
+      Are the electoral laws and framework fair, and are they implemented impartially by the relevant election management bodies?: "\u00bfSon las leyes y el marco electoral justos e implementados imparcialmente por los organismos electorales pertinentes?"
+      Are the people's political choices free from domination by the military, foreign powers, religious hierarchies, economic oligarchies, or any other powerful group that is not democratically accountable?: "\u00bfSon las opciones pol\u00edticas de la gente libres de dominaci\u00f3n por parte del ej\u00e9rcito, potencias extranjeras, jerarqu\u00edas religiosas, oligarqu\u00edas econ\u00f3micas o cualquier otro grupo poderoso que no sea democr\u00e1ticamente responsable?"
+      Are there free and independent media?: "\u00bfExisten medios de comunicaci\u00f3n libres e independientes?"
+      Do individuals enjoy freedom of movement, including the ability to change their place of residence, employment, or education?: "\u00bfTienen los individuos de libertad de movimiento, inclu\u00edda la capacidad de cambiar su lugar de residencia, empleo o educaci\u00f3n?"
+      Do individuals enjoy personal social freedoms, including choice of marriage partner and size of family, protection from domestic violence, and control over appearance?: "\u00bfTienen los individuos de libertades sociales personales, incluida la elecci\u00f3n de matrimonio y tama\u00f1o de la familia, protecci\u00f3n contra la violencia dom\u00e9stica y control sobre la apariencia?"
+      Do laws, policies, and practices guarantee equal treatment of various segments of the population?: "\u00bfGarantizan las leyes, pol\u00edticas y pr\u00e1cticas la igualdad de trato de diversos segmentos de la poblaci\u00f3n?"
+      Do the freely elected head of government and national legislative representatives determine the policies of the government?: "\u00bfEs el jefe de gobierno elegido libremente y son los representantes legislativos nacionales quienes determinan las pol\u00edticas del gobierno?"
+      Do the people have the right to organize in different political parties or other competitive political groupings of their choice, and is the system free of undue obstacles to the rise and fall of these competing parties or groupings?: "\u00bfTiene la gente el derecho a organizarse en diferentes partidos pol\u00edticos u otros grupos pol\u00edticos competitivos de su elecci\u00f3n y es el sistema libre de obst\u00e1culos indebidos para el ascenso y la ca\u00edda de estos partidos o grupos en competencia?"
+      Do various segments of the population (including ethnic, religious, gender, LGBT, and other relevant groups) have full political rights and electoral opportunities?: "\u00bfTienen los diversos segmentos de la poblaci\u00f3n (incluidos grupos \u00e9tnicos, religiosos, de g\u00e9nero, LGBT y otros relevantes) plenos derechos pol\u00edticos y oportunidades electorales?"
+      Does due process prevail in civil and criminal matters?: "\u00bfPrevalece el debido proceso en asuntos civiles y penales?"
+      Does the government operate with openness and transparency?: "\u00bfOpera el gobierno con apertura y transparencia?"
+      Is there a realistic opportunity for the opposition to increase its support or gain power through elections?: "\u00bfExiste una oportunidad realista para que la oposici\u00f3n aumente su apoyo o gane poder a trav\u00e9s de elecciones?"
+      Is there academic freedom, and is the educational system free from extensive political indoctrination?: "\u00bfExiste libertad acad\u00e9mica y es el sistema educativo libre de adoctrinamiento pol\u00edtico extenso?"
+      Is there an independent judiciary?: "\u00bfExiste un poder judicial independiente?"
+      Is there equality of opportunity and the absence of economic exploitation?: "\u00bfExiste igualdad de oportunidades y ausencia de explotaci\u00f3n econ\u00f3mica?"
+      Is there freedom for nongovernmental organizations, particularly those that are engaged in human rights and governance related work?: "\u00bfExiste libertad para las organizaciones no gubernamentales, especialmente las que se dedican a los derechos humanos y al trabajo relacionado con la gobernanza?"
+      Is there freedom for trade unions and similar professional or labor organizations?: "\u00bfExiste libertad para los sindicatos y organizaciones profesionales o laborales similares?"
+      Is there freedom of assembly?: "\u00bfExiste libertad de reuni\u00f3n?"
+      Is there protection from the illegitimate use of physical force and freedom from war and insurgencies?: "\u00bfExiste protecci\u00f3n contra el uso ileg\u00edtimo de la fuerza y ausencia de guerra e insurgencias?"
+      Was the current head of government or other chief national authority elected through free and fair elections?: "\u00bfFue el actual jefe de gobierno u otra autoridad nacional principal elegido a trav\u00e9s de elecciones libres y justas?"
+      Were the current national legislative representatives elected through free and fair elections?: "\u00bfFueron los actuales representantes legislativos nacionales elegidos a trav\u00e9s de elecciones libres y justas?"
+  score:
+    trans: puntaje
+    desc: "Puntaje del sub-\u00edtem (0-4)."
+help:
+  name: puntaje_pais
+  alias: puntaje_pais
+  title: Puntajes Desagregados de la Libertad en el Mundo, 2012-2022
+  description: "Adem\u00e1s de la tabla estado y ranking, los items mostrados
+    aqu\u00ed pueden ser sumados para obtener el puntaje agregado de derechos
+    pol\u00edticos (suma de los items A a C) y libertades civiles (items D a G).
+    Los sub-\u00edtems son puntuados de 0 a 4, con 0 representando el menor
+    grado de logro en una categor\u00eda dada y 4 el mayor. Por ejemplo, un
+    pa\u00eds que tiene 36 o m\u00e1s puntos en el puntaje agregado de derechos
+    pol\u00edticos obtiene una calificaci\u00f3n de 1, de 30 a 35 puntos una
+    calificaci\u00f3n de 2 y as\u00ed sucesivamente."
+  usage: puntaje_pais
+  format: Un data.frame de 57.625 filas y 8 columnas
+  source: Adaptado de Freedom House

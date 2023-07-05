@@ -63,4 +63,4 @@ translate <- function(spec_file) {
   }
   dfl
 }
-translate('category_scores.yml')
+translate('country_scores.yml')

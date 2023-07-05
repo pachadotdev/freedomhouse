@@ -1,15 +1,14 @@
 df:
-  source: freedomhouse::category_scores
-  name: puntajes_por_categoria
+  source: freedomhouse::country_rating_statuses
+  name: estado_calificacion_pais
 variables:
   year:
     trans: anio
-    desc: "A\u00f1o de la observaci\u00f3n (2012-2022)"
-  country_territory:
-    trans: pais_territorio
+    desc: "A\u00f1o de la observaci\u00f3n (1972-2022)"
+  country:
+    trans: pais
     desc: "Nombre del pa\u00eds o territorio"
     values:
-      Abkhazia: Abjasia
       Afghanistan: "Afganist\u00e1n"
       Albania: Albania
       Algeria: Argelia
@@ -52,16 +51,15 @@ variables:
       Congo (Kinshasa): "Rep\u00fablica Democr\u00e1tica del Congo"
       Costa Rica: Costa Rica
       Cote d'Ivoire: Costa de Marfil
-      Crimea: Crimea
       Croatia: Croacia
       Cuba: Cuba
       Cyprus: Chipre
       Czech Republic: "Rep\u00fablica Checa"
+      Czechoslovakia: Checoslovaquia
       Denmark: Dinamarca
       Djibouti: Yibuti
       Dominica: Dominica
       Dominican Republic: "Rep\u00fablica Dominicana"
-      Eastern Donbas: "Donb\u00e1s Oriental"
       Ecuador: Ecuador
       Egypt: Egipto
       El Salvador: El Salvador
@@ -74,9 +72,10 @@ variables:
       Finland: Finlandia
       France: Francia
       Gabon: Gab\u00f3n
-      Gaza Strip: Franja de Gaza
       Georgia: Georgia
       Germany: Alemania
+      Germany, E.: Alemania Oriental
+      Germany, W.: Alemania Occidental
       Ghana: Ghana
       Greece: Grecia
       Grenada: Granada
@@ -86,11 +85,9 @@ variables:
       Guyana: Guyana
       Haiti: "Hait\u00ed"
       Honduras: Honduras
-      Hong Kong: Hong Kong
       Hungary: "Hungr\u00eda"
       Iceland: Islandia
       India: India
-      Indian Kashmir: Cachemira
       Indonesia: Indonesia
       Iran: "Ir\u00e1n"
       Iraq: Irak
@@ -133,7 +130,6 @@ variables:
       Morocco: Marruecos
       Mozambique: Mozambique
       Myanmar: Birmania
-      Nagorno-Karabakh: Nagorno-Karabaj
       Namibia: Namibia
       Nauru: Nauru
       Nepal: Nepal
@@ -144,11 +140,9 @@ variables:
       Nigeria: Nigeria
       North Korea: "Corea del Norte"
       North Macedonia: Macedonia del Norte
-      Northern Cyprus: Chipre del Norte
       Norway: Noruega
       Oman: "Om\u00e1n"
       Pakistan: "Pakist\u00e1n"
-      Pakistan Kashmir: "Cachemira Pakistan\u00ed"
       Palau: Palaos
       Panama: "Panam\u00e1"
       Papua New Guinea: "Pap\u00faa Nueva Guinea"
@@ -157,7 +151,6 @@ variables:
       Philippines: Filipinas
       Poland: Polonia
       Portugal: Portugal
-      Puerto Rico: Puerto Rico
       Qatar: Catar
       Romania: Rumania
       Russia: Rusia
@@ -168,6 +161,7 @@ variables:
       Saudi Arabia: "Arabia Saudita"
       Senegal: Senegal
       Serbia: Serbia
+      Serbia and Montenegro: Serbia y Montenegro
       Seychelles: Seychelles
       Sierra Leone: Sierra Leona
       Singapore: Singapur
@@ -175,10 +169,8 @@ variables:
       Slovenia: Eslovenia
       Solomon Islands: "Islas Salom\u00f3n"
       Somalia: Somalia
-      Somaliland: Somalilandia
       South Africa: "Sud\u00e1frica"
       South Korea: Corea del Sur
-      South Ossetia: Osetia del Sur
       South Sudan: "Sud\u00e1n del Sur"
       Spain: "Espa\u00f1a"
       Sri Lanka: Sri Lanka
@@ -195,11 +187,9 @@ variables:
       Tanzania: Tanzania
       Thailand: Tailandia
       The Gambia: Gambia
-      Tibet: "T\u00edb\u00e9t"
       Timor-Leste: Timor Oriental
       Togo: Togo
       Tonga: Tonga
-      Transnitria: Transnistria
       Trinidad and Tobago: Trinidad y Tobago
       Tunisia: "T\u00fanez"
       Turkey: "Turqu\u00eda"
@@ -211,13 +201,17 @@ variables:
       United Kingdom: Reino Unido
       United States: Estados Unidos
       Uruguay: Uruguay
+      USSR: URSS
       Uzbekistan: "Uzbekist\u00e1n"
       Vanuatu: Vanuatu
       Venezuela: Venezuela
       Vietnam: Vietnam
-      West Bank: Cisjordania
-      Western Sahara: Sahara Occidental
+      Vietnam, N.: Vietnam del Norte
+      Vietnam, S.: Vietnam del Sur
       Yemen: Yemen
+      Yemen, N.: Yemen del Norte
+      Yemen, S.: Yemen del Sur
+      Yugoslavia: Yugoslavia
       Zambia: Zambia
       Zimbabwe: Zimbabue
   iso2c:
@@ -229,9 +223,7 @@ variables:
   iso3c:
     trans: iso3c
     desc: "C\u00f3digo ISO de tres d\u00edgitos del pa\u00eds o territorio.
-    Abjasia, Crimea, Kosovo, Nagorno-Karabaj, Osetia del Sur, Palestina, Sahara
-    Occidental y Transnistria no tienen una correspondencia inambigua y aparecen
-    como 'NA'."
+    Sigue el mismo criterio para los 'NA' que la variable iso2c."
   continent:
     trans: continente
     values:
@@ -239,28 +231,35 @@ variables:
       Asia: Asia
       Europe: Europa
       Americas: "Las Am\u00e9ricas"
+      Oceania: "Ocean\u00eda"
     desc: Nombre del continente.
-  item:
-    trans: item
-    desc: "Letra del \u00edtem (A-G)."
-  sub_item:
-    trans: sub_item
-    desc: "Letra y n\u00famero del sub-\u00edtem (A1-G4)."
-  score:
-    trans: puntaje
-    desc: "Puntaje del sub-\u00edtem (0-4)."
+  political_rights:
+    trans: derechos_politicos
+    desc: "Calificaci\u00f3n de derechos pol\u00edticos (escala 1-7, con 1 
+      representando el mayor grado de libertad y 7 el menor)."
+  civil_liberties:
+    trans: libertades_civiles
+    desc: "Calificaci\u00f3n de libertades civiles (escala 1-7, con 1
+      representando el mayor grado de libertad y 7 el menor)."
+  status:
+    trans: estado
+    desc: "Estado del pa\u00eds (Libre, Parcialmente Libre, No Libre)."
+    values:
+      Free: Libre
+      Partly Free: Parcialmente Libre
+      Not Free: No Libre
+  color:
+    trans: color
+    desc: "Color asociado al estado del pa\u00eds."
 help:
-  name: puntajes_por_categoria
-  alias: puntajes_por_categoria
-  title: Puntajes Desagregados de la Libertad en el Mundo, 2012-2022
-  description: "Adem\u00e1s de la tabla estado y ranking, los items mostrados
-    aqu\u00ed pueden ser sumados para obtener el puntaje agregado de derechos
-    pol\u00edticos (suma de los items A a C) y libertades civiles (items D a G).
-    Los sub-\u00edtems son puntuados de 0 a 4, con 0 representando el menor
-    grado de logro en una categor\u00eda dada y 4 el mayor. Por ejemplo, un
-    pa\u00eds que tiene 36 o m\u00e1s puntos en el puntaje agregado de derechos
-    pol\u00edticos obtiene una calificaci\u00f3n de 1, de 30 a 35 puntos una
-    calificaci\u00f3n de 2 y as\u00ed sucesivamente."
-  usage: puntajes_por_categoria
-  format: Un data.frame de 57.625 filas y 8 columnas
+  name: estado_calificacion_pais
+  alias: estado_calificacion_pais
+  title: "Libertades Civiles y Derechos Pol\u00edticos, 1972-2022"
+  description: "Para cada pa\u00eds y territorio, La Libertad en el Mundo
+  analiza el proceso electoral, el pluralismo y la participaci\u00f3n
+  pol\u00edtica, el funcionamiento del gobierno, la libertad de expresi\u00f3n y
+  de creencias, los derechos asociativos y organizativos, el estado de derecho,
+  la autonom\u00eda personal y los derechos individuales."
+  usage: estado_calificacion_pais
+  format: Un data.frame de 9.043 filas y 9 columnas
   source: Adaptado de Freedom House

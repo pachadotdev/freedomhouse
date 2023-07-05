@@ -1,5 +1,5 @@
-delayedAssign('puntajes_por_categoria',
-        eval(parse(file.path(system.file('scripts','puntajes_por_categoria.txt', package = 'casadelalibertad')))))
+delayedAssign('puntaje_pais',
+        eval(parse(file.path(system.file('scripts','country_scores.txt', package = 'casadelalibertad')))))
 
-delayedAssign('items_puntajes_por_categoria',
-        eval(parse(file.path(system.file('scripts','items_puntajes_por_categoria.txt', package = 'casadelalibertad')))))
+delayedAssign('estado_calificacion_pais',
+        eval(parse(file.path(system.file('scripts','country_rating_statuses.txt', package = 'casadelalibertad')))))

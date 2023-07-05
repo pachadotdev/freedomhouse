@@ -27,8 +27,7 @@ and personal autonomy and individual rights.
 \item \code{country}: Country name.
 \item \code{iso2c}: ISO 2-character country code. Czechoslovakia, Kosovo, Micronesia,
 Serbia and Montenegro, and Yugoslavia do not have unambiguous matches and appear as 'NA'.
-\item \code{iso3c}: ISO 3-character country code. Czechoslovakia, Kosovo, Micronesia,
-Serbia and Montenegro, and Yugoslavia do not have unambiguous matches and appear as 'NA'.
+\item \code{iso3c}: ISO 3-character country code. Same criteria for 'NA' as in \code{iso2c}.
 \item \code{continent}: Continent name.
 \item \code{year}: Year of observation (1973-2023).
 \item \code{political_rights}: Political rights rating (1-7 scale, with one representing the

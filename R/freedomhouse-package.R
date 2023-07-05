@@ -12,8 +12,7 @@
 #'  \item \code{country}: Country name.
 #'  \item \code{iso2c}: ISO 2-character country code. Czechoslovakia, Kosovo, Micronesia,
 #'   Serbia and Montenegro, and Yugoslavia do not have unambiguous matches and appear as 'NA'.
-#'  \item \code{iso3c}: ISO 3-character country code. Czechoslovakia, Kosovo, Micronesia,
-#'   Serbia and Montenegro, and Yugoslavia do not have unambiguous matches and appear as 'NA'.
+#'  \item \code{iso3c}: ISO 3-character country code. Same criteria for 'NA' as in \code{iso2c}.
 #'  \item \code{continent}: Continent name.
 #'  \item \code{year}: Year of observation (1973-2023).
 #'  \item \code{political_rights}: Political rights rating (1-7 scale, with one representing the 
@@ -51,49 +50,25 @@
 #'  \item \code{iso2c}: ISO 2-character country code. Abkhazia, Crimea, Eastern Donbas, Kosovo, 
 #'   Micronesia, Nagorno-Karabakh, Somaliland, South Ossetia, Tibet, Transnistria do not have
 #'   unambiguous matches and appear as 'NA'.
-#'  \item \code{iso3c}: ISO 3-character country code. Abkhazia, Crimea, Eastern Donbas, Kosovo, 
-#'   Micronesia, Nagorno-Karabakh, Somaliland, South Ossetia, Tibet, Transnistria do not have
-#'   unambiguous matches and appear as 'NA'.
+#'  \item \code{iso3c}: ISO 3-character country code. Same criteria for 'NA' as in \code{iso2c}.
 #'  \item \code{continent}: Continent name.
-#'  \item \code{item}: Item letter (A-G).
-#'  \item \code{sub_item}: Sub-item letter and number (A1-G4).
-#'  \item \code{score}: Score for the sub-item (0-4).
-#' }
-#' 
-#' @docType data
-#' @name category_scores
-#' @usage category_scores
-#' @format A \code{data frame} with 57,625 observations and 8 variables.
-#' @source Adapted from Freedom House.
-"category_scores"
-
-#' Freedom in the World Items and Sub-Items Description, 2012-2022
-#' 
-#' Provides a full description for the meaning of each item and sub-item in the
-#' \code{category_scores} table. For example, item A corresponds to Political Rights.
-#' 
-#' @section Variables:
-#' 
-#' \itemize{
 #'  \item \code{item}: Item letter (A-G).
 #'  \item \code{sub_item}: Sub-item letter and number (A1-G4).
 #'  \item \code{item_description}: Description of the item.
 #'  \item \code{sub_item_description}: Description of the sub-item.
+#'  \item \code{score}: Score for the sub-item (0-4).
 #' }
 #' 
 #' @docType data
-#' @name category_scores_items
-#' @usage category_scores_items
-#' @format A \code{data frame} with 25 observations and 4 variables.
+#' @name country_scores
+#' @usage country_scores
+#' @format A \code{data frame} with 57,625 observations and 8 variables.
 #' @source Adapted from Freedom House.
-#' @references Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
-#' Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
-#' Accessed 2022-10-01.
-"category_scores_items"
+"country_scores"
 
 #' Freedom in the World Sub-Items Texts, 2012-2022
 #' 
-#' Provides the text for each sub-item in the \code{category_scores} table. For each
+#' Provides the text for each sub-item in the \code{country_scores} table. For each
 #' sub-item the text corresponds to the justification for the assigned score.
 #' 
 #' @section Variables:
@@ -113,11 +88,11 @@
 #' }
 #'
 #' @docType data
-#' @name country_ratings_texts
-#' @usage country_ratings_texts
+#' @name country_rating_texts
+#' @usage country_rating_texts
 #' @format A \code{data frame} with 27,803 observations and 7 variables.
 #' @source Own creation, based on texts scraped from Freedom House.
 #' @references Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
 #' Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
 #' Accessed 2022-10-01.
-"country_ratings_texts"
+"country_rating_texts"

@@ -61,22 +61,23 @@ library(dplyr)
 library(freedomhouse)
 
 # Search for "trade union" in the sub_item_description column
-category_scores_items %>%
+country_scores %>%
   filter(grepl("trade union", sub_item_description))
 
 # Get the full description of the sub-item
-category_scores_items %>%
+country_scores %>%
   filter(sub_item == "E3") %>%
+  distinct(sub_item_description) %>%
   pull(sub_item_description)
 
 # Filter by sub-item code and country code for trade unions in Canada
-category_scores %>%
+country_scores %>%
   filter(
     sub_item == "E3",
     iso3c == "CAN"
   )  %>%
   inner_join(
-    country_ratings_texts %>%
+    country_rating_texts %>%
       select(year, iso3c, sub_item, detail) %>%
       filter(
         sub_item == "E3",
@@ -124,19 +125,22 @@ library(dplyr)
 Las variables que contienen los datos van a estar disponibles inmediatamente
 para su uso, pero los datos no se traducirán hasta que la variable sea "llamada"
 explícitamente en el código que se escriba. En este ejemplo, el _dataset_
-`puntajes_por_categoria`, que proviene de `freedomhouse::category_scores`, se 
+`puntajes_pais`, que proviene de `freedomhouse::country_scores`, se 
 carga en la memoria de R en el momento en que lo llamamos por primera vez en 
 español:
 
 ```{r es3}
-glimpse(puntajes_por_categoria)
+glimpse(puntaje_pais)
 ```
 
 Los datos traducidos quedarán cargados durante toda la sesión de R:
 
 ```{r es4}
-puntajes_por_categoria %>%
+puntaje_pais %>%
   filter(pais_territorio == "Canad\u00e1")
+
+puntaje_pais %>%
+  filter(pais_territorio == "Canadá")
 ```
 
 ## Development
@@ -149,8 +153,10 @@ puntajes_por_categoria %>%
 
 ```r
 devtools::load_all()
-writeLines(create_rd("inst/specs/category_scores.yml"),
-  "man/puntajes_por_categoria.Rd")
+writeLines(create_rd("inst/specs/country_scores.yml"),
+  "man/puntaje_pais.Rd")
+writeLines(create_rd("inst/specs/country_rating_statuses.yml"),
+  "man/estado_calificacion_pais.Rd")
 ```
 
 3. Verify:
@@ -164,4 +170,11 @@ devtools::check()
 
 ```bash
 casadelalibertad (main) $ bash dev/fix_non_ascii.sh 
+```
+
+5. Update site:
+
+```r
+unlink("docs", recursive = TRUE)
+altdoc::use_mkdocs(theme = "readthedocs")
 ```

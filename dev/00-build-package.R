@@ -429,8 +429,18 @@ category_scores_items <- category_scores_items %>%
     sub_item_description = str_replace_all(sub_item_description, "’", "'"),
   )
 
+category_scores <- category_scores %>%
+  left_join(category_scores_items) %>%
+  select(-score, everything()) %>%
+  mutate(
+    item = as.factor(item),
+    sub_item = as.factor(sub_item),
+    item_description = as.factor(item_description),
+    sub_item_description = as.factor(sub_item_description)
+  )
+
 use_data(category_scores, overwrite = TRUE)
-use_data(category_scores_items, overwrite = TRUE)
+# use_data(category_scores_items, overwrite = TRUE)
 
 # Add texts ----
 
@@ -570,7 +580,7 @@ country_text <- country_text %>%
 
 country_text$canada_2023
 
-country_ratings_texts <- map_df(
+country_rating_texts <- map_df(
   seq_along(country_text),
   function(x) {
     # print(x)
@@ -611,7 +621,7 @@ country_ratings_texts <- map_df(
 )
 
 # more tidying
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   separate(country_year, c("country", "year"), sep = "_") %>%
   mutate(
     year = as.integer(year),
@@ -625,7 +635,7 @@ country_ratings_texts <- country_ratings_texts %>%
     )
   )
 
-unique(country_ratings_texts$country)
+unique(country_rating_texts$country)
 
 # obtain iso code for the country and then replace with the names as they are in country_rating_statuses
 
@@ -634,7 +644,7 @@ country_rating_statuses %>%
   distinct(country)
 
 # check the match
-country_ratings_texts %>%
+country_rating_texts %>%
   mutate(
     country = str_replace(country, " And ", " and "),
     country = str_replace(country, "St ", "St\\. "),
@@ -650,7 +660,7 @@ country_ratings_texts %>%
   filter(is.na(continent)) %>%
   distinct(country)
 
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   mutate(
     country = str_replace(country, " And ", " and "),
     country = str_replace(country, "St ", "St\\. "),
@@ -666,13 +676,13 @@ country_ratings_texts <- country_ratings_texts %>%
   select(year, country, iso3c, iso2c, continent, sub_item, detail)
 
 # remove starting "Ratings Change " from detail
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   mutate(
     detail = str_remove(detail, "^Ratings Change ")
   )
 
 # fix ' and "
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   mutate(
     detail = str_replace_all(detail, "’", "'"),
     detail = str_replace_all(detail, "“", "\""),
@@ -680,24 +690,24 @@ country_ratings_texts <- country_ratings_texts %>%
   )
 
 # convert country to fct
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   mutate(country = as.factor(country))
 
 # substract 1 year
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   mutate(year = year - 1L)
 
 # put iso2c before iso3c, oops
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   select(year, country, iso2c, iso3c, continent, sub_item, detail)
 
-# country_ratings_texts_2 <- country_ratings_texts %>%
+# country_rating_texts_2 <- country_rating_texts %>%
 #   mutate(detail_end = str_sub(detail, -20))
 
-# country_ratings_texts_2 <- country_ratings_texts_2 %>%
+# country_rating_texts_2 <- country_rating_texts_2 %>%
 #   distinct(detail_end)
  
-# readr::write_csv(country_ratings_texts_2, "dev/country_ratings_texts.csv")
+# readr::write_csv(country_rating_texts_2, "dev/country_rating_texts.csv")
 
 # remove "A Electoral Process", 
 # "B Political Pluralism and Participation"
@@ -710,7 +720,7 @@ country_ratings_texts <- country_ratings_texts %>%
 # "CL Civil Liberties"
 # "PR Political Rights"
 # "1.00-4.00 pts0-4 pts" from detail
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   mutate(
     detail = str_remove_all(detail, "A Electoral Process"),
     detail = str_remove_all(detail, "B Political Pluralism and Participation"),
@@ -726,7 +736,7 @@ country_ratings_texts <- country_ratings_texts %>%
   )
 
 # trim and remove multiple spaces
-country_ratings_texts <- country_ratings_texts %>%
+country_rating_texts <- country_rating_texts %>%
   mutate(
     detail = str_replace_all(detail, "\\s+", " ")
   ) %>%
@@ -735,7 +745,7 @@ country_ratings_texts <- country_ratings_texts %>%
   )
 
 # convert the detail to a vector
-detail <- country_ratings_texts$detail
+detail <- country_rating_texts$detail
 
 # split detail by sentence
 detail <- str_split(detail, "\\. ") %>%
@@ -753,7 +763,7 @@ detail %>%
   filter(detail != ".") %>%
   arrange(-n)
 
-use_data(country_ratings_texts, overwrite = TRUE)
+use_data(country_rating_texts, overwrite = TRUE)
 
 # Configure package and test ----
 

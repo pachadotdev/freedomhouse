@@ -1,97 +1,5 @@
 # Reference 
 
-## Category scores items
----------------------------------------------------------------
-
-### Description
-
-Provides a full description for the meaning of each item and sub-item in
-the `category_scores` table. For example, item A corresponds to
-Political Rights.
-
-### Usage
-
-    category_scores_items
-
-### Format
-
-A `data frame` with 25 observations and 4 variables.
-
-### Variables
-
--   `item`: Item letter (A-G).
-
--   `sub_item`: Sub-item letter and number (A1-G4).
-
--   `item_description`: Description of the item.
-
--   `sub_item_description`: Description of the sub-item.
-
-### Source
-
-Adapted from Freedom House.
-
-### References
-
-Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the
-Struggle for Democracy. Washington, DC: Freedom House.
-https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
-Accessed 2022-10-01.
-
-
----
-## Category scores
------------------------------------------------------
-
-### Description
-
-Adding to the `country_rating_statuses` table, the items displayed here
-can be summed up to obtain the `political_rights` aggregate score (sum
-of items A to C) and `civil_liberties` aggregate score (items D to G).
-The sub-items are scored from 0 to 4, with 0 representing the lowest
-degree of achievement in a given category and 4 the highest. For
-example, a country with 36 or more points in the political rights
-aggregate score obtains a political rights rating of 1, from 30 to 35
-points a rating of 2, and so on.
-
-### Usage
-
-    category_scores
-
-### Format
-
-A `data frame` with 57,625 observations and 8 variables.
-
-### Variables
-
--   `year`: Year of observation (2012-2022).
-
--   `country_territory`: Country or territory name.
-
--   `iso2c`: ISO 2-character country code. Abkhazia, Crimea, Eastern
-    Donbas, Kosovo, Micronesia, Nagorno-Karabakh, Somaliland, South
-    Ossetia, Tibet, Transnistria do not have unambiguous matches and
-    appear as 'NA'.
-
--   `iso3c`: ISO 3-character country code. Abkhazia, Crimea, Eastern
-    Donbas, Kosovo, Micronesia, Nagorno-Karabakh, Somaliland, South
-    Ossetia, Tibet, Transnistria do not have unambiguous matches and
-    appear as 'NA'.
-
--   `continent`: Continent name.
-
--   `item`: Item letter (A-G).
-
--   `sub_item`: Sub-item letter and number (A1-G4).
-
--   `score`: Score for the sub-item (0-4).
-
-### Source
-
-Adapted from Freedom House.
-
-
----
 ## Country rating statuses
 -------------------------------------------------------
 
@@ -122,9 +30,8 @@ A `data frame` with 9,043 observations and 9 variables.
     Micronesia, Serbia and Montenegro, and Yugoslavia do not have
     unambiguous matches and appear as 'NA'.
 
--   `iso3c`: ISO 3-character country code. Czechoslovakia, Kosovo,
-    Micronesia, Serbia and Montenegro, and Yugoslavia do not have
-    unambiguous matches and appear as 'NA'.
+-   `iso3c`: ISO 3-character country code. Same criteria for 'NA' as in
+    `iso2c`.
 
 -   `continent`: Continent name.
 
@@ -153,18 +60,18 @@ Accessed 2022-10-01.
 
 
 ---
-## Country ratings texts
+## Country rating texts
 -----------------------------------------------
 
 ### Description
 
-Provides the text for each sub-item in the `category_scores` table. For
+Provides the text for each sub-item in the `country_scores` table. For
 each sub-item the text corresponds to the justification for the assigned
 score.
 
 ### Usage
 
-    country_ratings_texts
+    country_rating_texts
 
 ### Format
 
@@ -203,6 +110,60 @@ Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the
 Struggle for Democracy. Washington, DC: Freedom House.
 https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
 Accessed 2022-10-01.
+
+
+---
+## Country scores
+-----------------------------------------------------
+
+### Description
+
+Adding to the `country_rating_statuses` table, the items displayed here
+can be summed up to obtain the `political_rights` aggregate score (sum
+of items A to C) and `civil_liberties` aggregate score (items D to G).
+The sub-items are scored from 0 to 4, with 0 representing the lowest
+degree of achievement in a given category and 4 the highest. For
+example, a country with 36 or more points in the political rights
+aggregate score obtains a political rights rating of 1, from 30 to 35
+points a rating of 2, and so on.
+
+### Usage
+
+    country_scores
+
+### Format
+
+A `data frame` with 57,625 observations and 8 variables.
+
+### Variables
+
+-   `year`: Year of observation (2012-2022).
+
+-   `country_territory`: Country or territory name.
+
+-   `iso2c`: ISO 2-character country code. Abkhazia, Crimea, Eastern
+    Donbas, Kosovo, Micronesia, Nagorno-Karabakh, Somaliland, South
+    Ossetia, Tibet, Transnistria do not have unambiguous matches and
+    appear as 'NA'.
+
+-   `iso3c`: ISO 3-character country code. Same criteria for 'NA' as in
+    `iso2c`.
+
+-   `continent`: Continent name.
+
+-   `item`: Item letter (A-G).
+
+-   `sub_item`: Sub-item letter and number (A1-G4).
+
+-   `item_description`: Description of the item.
+
+-   `sub_item_description`: Description of the sub-item.
+
+-   `score`: Score for the sub-item (0-4).
+
+### Source
+
+Adapted from Freedom House.
 
 
 ---
