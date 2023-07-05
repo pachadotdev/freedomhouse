@@ -115,8 +115,6 @@ There is an example with Shiny
 
 ### Spanish
 
-## Traducciones
-
 Las traducciones disponibles dentro de `casadelalibertad` son las
 siguientes:
 
@@ -233,7 +231,9 @@ devtools::check()
 es (main) $ bash dev/fix_non_ascii.sh 
 ```
 
-5.  Update site:
+5.  Open `freedomhouse/`.
+
+6.  Update site:
 
 <!-- end list -->
 
@@ -241,3 +241,5 @@ es (main) $ bash dev/fix_non_ascii.sh
 unlink("docs", recursive = TRUE)
 altdoc::use_mkdocs(theme = "readthedocs")
 ```
+
+7.  Push

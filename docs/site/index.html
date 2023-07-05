@@ -55,8 +55,6 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#traducciones">Traducciones</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#development">Development</a>
     </li>
     </ul>
@@ -190,7 +188,6 @@ country_scores %&gt;%
 <a href="https://github.com/pachadotdev/freedomhouse/tree/main/shiny-demo">here</a>.</p>
 <h2 id="translations">Translations</h2>
 <h3 id="spanish">Spanish</h3>
-<h2 id="traducciones">Traducciones</h2>
 <p>Las traducciones disponibles dentro de <code>casadelalibertad</code> son las
 siguientes:</p>
 <table>
@@ -312,13 +309,21 @@ devtools::check()
 <pre><code class="language-bash">es (main) $ bash dev/fix_non_ascii.sh 
 </code></pre>
 <ol>
-<li>Update site:</li>
+<li>
+<p>Open <code>freedomhouse/</code>.</p>
+</li>
+<li>
+<p>Update site:</p>
+</li>
 </ol>
 <!-- end list -->
 
 <pre><code class="language-r">unlink(&quot;docs&quot;, recursive = TRUE)
 altdoc::use_mkdocs(theme = &quot;readthedocs&quot;)
 </code></pre>
+<ol>
+<li>Push</li>
+</ol>
               
             </div>
           </div><footer>
@@ -366,5 +371,5 @@ altdoc::use_mkdocs(theme = &quot;readthedocs&quot;)
 
 <!--
 MkDocs version : 1.4.3
-Build Date UTC : 2023-07-05 22:41:39.452551+00:00
+Build Date UTC : 2023-07-05 22:51:10.287494+00:00
 -->
