@@ -3,7 +3,7 @@
 ^docs$
 ^_pkgdown\.yml$
 ^README\.Rmd$
-^datos\.Rproj$
+^casadelalibertad\.Rproj$
 ^\.Rproj\.user$
 .travis.yml
 dev/

@@ -17,4 +17,5 @@ do
     sed -i 's/Ó/\\u00d3/g' $file
     sed -i 's/Ú/\\u00da/g' $file
     sed -i 's/Ñ/\\u00d1/g' $file
+    sed -i 's/¿/\\u00bf/g' $file
 done

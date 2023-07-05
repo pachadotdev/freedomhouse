@@ -1,0 +1,63 @@
+df:
+  source: freedomhouse::category_scores_items
+  name: items_puntajes_por_categoria
+variables:
+  item:
+    trans: item
+    desc: "Letra del \u00edtem (A-G)."
+  sub_item:
+    trans: sub_item
+    desc: "Letra y n\u00famero del sub-\u00edtem (A1-G4)."
+  item_description:
+    trans: descripcion_item
+    desc: "Descripci\u00f3n del sub-\u00edtem."
+    values:
+      Associational and Organizational Rights: "Derechos de asociaci\u00f3n y
+        organizaci\u00f3n"
+      Freedom of Expression and Belief: "Libertad de expresi\u00f3n y culto"
+      Functioning of Government: "Funcionamiento del gobierno"
+      Personal Autonomy and Individual Rights: "Autonom\u00eda personal y
+        derechos individuales"
+      Political Pluralism and Participation: "Pluralismo pol\u00edtico y
+        participaci\u00f3n"
+      Political Rights: "Derechos pol\u00edticos"
+      Rule of Law: "Estado de derecho"
+  sub_item_description:
+    trans: descripcion_sub_item
+    desc: "Descripci\u00f3n del sub-\u00edtem."
+    values:
+      Are individuals able to exercise the right to own property and establish private businesses without undue interference from state or nonstate actors?: "\u00bfPueden los individuos ejercer el derecho a la propiedad y establecer negocios privados sin interferencia indebida de actores estatales o no estatales?"
+      Are individuals free to express their personal views on political or other sensitive topics without fear of surveillance or retribution?: "\u00bfSon los individuos libres de expresar sus opiniones personales sobre temas pol\u00edticos u otros temas sensibles sin temor a la vigilancia o represalias?"
+      Are individuals free to practice and express their religious faith or nonbelief in public and private?: "\u00bfSon los individuos libres de practicar y expresar su fe religiosa o no creencia en p\u00fablico y en privado?"
+      Are safeguards against official corruption strong and effective?: "\u00bfSon las salvaguardas contra la corrupci\u00f3n de oficiales de gobierno fuertes y efectivas?"
+      Are the electoral laws and framework fair, and are they implemented impartially by the relevant election management bodies?: "\u00bfSon las leyes y el marco electoral justos e implementados imparcialmente por los organismos electorales pertinentes?"
+      Are the people's political choices free from domination by the military, foreign powers, religious hierarchies, economic oligarchies, or any other powerful group that is not democratically accountable?: "\u00bfSon las opciones pol\u00edticas de la gente libres de dominaci\u00f3n por parte del ej\u00e9rcito, potencias extranjeras, jerarqu\u00edas religiosas, oligarqu\u00edas econ\u00f3micas o cualquier otro grupo poderoso que no sea democr\u00e1ticamente responsable?"
+      Are there free and independent media?: "\u00bfExisten medios de comunicaci\u00f3n libres e independientes?"
+      Do individuals enjoy freedom of movement, including the ability to change their place of residence, employment, or education?: "\u00bfTienen los individuos de libertad de movimiento, inclu\u00edda la capacidad de cambiar su lugar de residencia, empleo o educaci\u00f3n?"
+      Do individuals enjoy personal social freedoms, including choice of marriage partner and size of family, protection from domestic violence, and control over appearance?: "\u00bfTienen los individuos de libertades sociales personales, incluida la elecci\u00f3n de matrimonio y tama\u00f1o de la familia, protecci\u00f3n contra la violencia dom\u00e9stica y control sobre la apariencia?"
+      Do laws, policies, and practices guarantee equal treatment of various segments of the population?: "\u00bfGarantizan las leyes, pol\u00edticas y pr\u00e1cticas la igualdad de trato de diversos segmentos de la poblaci\u00f3n?"
+      Do the freely elected head of government and national legislative representatives determine the policies of the government?: "\u00bfEs el jefe de gobierno elegido libremente y son los representantes legislativos nacionales quienes determinan las pol\u00edticas del gobierno?"
+      Do the people have the right to organize in different political parties or other competitive political groupings of their choice, and is the system free of undue obstacles to the rise and fall of these competing parties or groupings?: "\u00bfTiene la gente el derecho a organizarse en diferentes partidos pol\u00edticos u otros grupos pol\u00edticos competitivos de su elecci\u00f3n y es el sistema libre de obst\u00e1culos indebidos para el ascenso y la ca\u00edda de estos partidos o grupos en competencia?"
+      Do various segments of the population (including ethnic, religious, gender, LGBT, and other relevant groups) have full political rights and electoral opportunities?: "\u00bfTienen los diversos segmentos de la poblaci\u00f3n (incluidos grupos \u00e9tnicos, religiosos, de g\u00e9nero, LGBT y otros relevantes) plenos derechos pol\u00edticos y oportunidades electorales?"
+      Does due process prevail in civil and criminal matters?: "\u00bfPrevalece el debido proceso en asuntos civiles y penales?"
+      Does the government operate with openness and transparency?: "\u00bfOpera el gobierno con apertura y transparencia?"
+      Is there a realistic opportunity for the opposition to increase its support or gain power through elections?: "\u00bfExiste una oportunidad realista para que la oposici\u00f3n aumente su apoyo o gane poder a trav\u00e9s de elecciones?"
+      Is there academic freedom, and is the educational system free from extensive political indoctrination?: "\u00bfExiste libertad acad\u00e9mica y es el sistema educativo libre de indoctrinaci\u00f3n pol\u00edtica extensa?"
+      Is there an independent judiciary?: "\u00bfExiste un poder judicial independiente?"
+      Is there equality of opportunity and the absence of economic exploitation?: "\u00bfExiste igualdad de oportunidades y ausencia de explotaci\u00f3n econ\u00f3mica?"
+      Is there freedom for nongovernmental organizations, particularly those that are engaged in human rights and governance related work?: "\u00bfExiste libertad para las organizaciones no gubernamentales, especialmente las que se dedican a los derechos humanos y al trabajo relacionado con la gobernanza?"
+      Is there freedom for trade unions and similar professional or labor organizations?: "\u00bfExiste libertad para los sindicatos y organizaciones profesionales o laborales similares?"
+      Is there freedom of assembly?: "\u00bfExiste libertad de reuni\u00f3n?"
+      Is there protection from the illegitimate use of physical force and freedom from war and insurgencies?: "\u00bfExiste protecci\u00f3n contra el uso ileg\u00edtimo de la fuerza y ausencia de guerra e insurgencias?"
+      Was the current head of government or other chief national authority elected through free and fair elections?: "\u00bfFue el actual jefe de gobierno u otra autoridad nacional principal elegido a trav\u00e9s de elecciones libres y justas?"
+      Were the current national legislative representatives elected through free and fair elections?: "\u00bfFueron los actuales representantes legislativos nacionales elegidos a trav\u00e9s de elecciones libres y justas?"
+help:
+  name: items_puntajes_por_categoria
+  alias: items_puntajes_por_categoria
+  title: Puntajes Desagregados de la Libertad en el Mundo, 2012-2022
+  description: "Proporciona una descripci\u00f3n completa del significado de cada
+    \u00edtem y sub-\u00edtem en la tabla de puntajes por categor\u00eda. Por ejemplo, el \u00edtem
+    A corresponde a Derechos Pol\u00edticos."
+  usage: items_puntajes_por_categoria
+  format: Un data.frame de 25 filas y 4 columnas
+  source: Adaptado de Freedom House

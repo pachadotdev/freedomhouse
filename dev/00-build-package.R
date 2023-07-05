@@ -419,6 +419,16 @@ category_scores <- category_scores %>%
 category_scores_items <- category_scores_items %>%
   filter(sub_item != "ad")
 
+sort(unique(category_scores_items$sub_item_description))
+
+# remove – and change ’ for '
+category_scores_items <- category_scores_items %>%
+  mutate(
+    sub_item_description = str_replace_all(sub_item_description, "–", " "),
+    sub_item_description = str_replace_all(sub_item_description, "\\s+", " "),
+    sub_item_description = str_replace_all(sub_item_description, "’", "'"),
+  )
+
 use_data(category_scores, overwrite = TRUE)
 use_data(category_scores_items, overwrite = TRUE)
 
