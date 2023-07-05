@@ -102,10 +102,11 @@ Las traducciones disponibles dentro de `casadelalibertad` son las siguientes:
 
 ```{r es1, echo = FALSE}
 library(purrr)
+library(dplyr)
 library(yaml)
 
-specs <- list.files("inst/specs")
-all <- map(file.path("inst", "specs", specs), read_yaml)
+specs <- list.files("translations/es/inst/specs", full.names = T)
+all <- map(specs, read_yaml)
 sources <- map_chr(all, ~ .x$df$source)
 
 pkgs <- tibble(
@@ -173,7 +174,7 @@ devtools::check()
 4. Fix non-ASCII characters:
 
 ```bash
-casadelalibertad (main) $ bash dev/fix_non_ascii.sh 
+es (main) $ bash dev/fix_non_ascii.sh 
 ```
 
 5. Update site:

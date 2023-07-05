@@ -120,8 +120,10 @@ There is an example with Shiny
 Las traducciones disponibles dentro de `casadelalibertad` son las
 siguientes:
 
-| Nombre | Titulo | Dataset |
-| :----- | :----- | :------ |
+| Nombre                     | Titulo                                                      | Dataset                   |
+| :------------------------- | :---------------------------------------------------------- | :------------------------ |
+| estado\_calificacion\_pais | Libertades Civiles y Derechos Políticos, 1972-2022          | country\_rating\_statuses |
+| puntaje\_pais              | Puntajes Desagregados de la Libertad en el Mundo, 2012-2022 | country\_scores           |
 
 El paquete `casadelalibertad` se carga igual que todos los paquetes de
 R:
@@ -228,7 +230,7 @@ devtools::check()
 <!-- end list -->
 
 ``` bash
-casadelalibertad (main) $ bash dev/fix_non_ascii.sh 
+es (main) $ bash dev/fix_non_ascii.sh 
 ```
 
 5.  Update site:
