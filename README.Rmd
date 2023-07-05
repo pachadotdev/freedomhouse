@@ -88,6 +88,10 @@ country_scores %>%
   select(year, iso3c, sub_item, score, detail)
 ```
 
+## Shiny
+
+There is an example with Shiny [here](https://github.com/pachadotdev/freedomhouse/tree/main/shiny-demo).
+
 ## Translations
 
 ### Spanish

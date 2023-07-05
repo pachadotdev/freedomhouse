@@ -106,6 +106,11 @@ country_scores %>%
 #> 6  2017 CAN   E3           4 Trade unions and business associations enjoy high …
 ```
 
+## Shiny
+
+There is an example with Shiny
+[here](https://github.com/pachadotdev/freedomhouse/tree/main/shiny-demo).
+
 ## Translations
 
 ### Spanish

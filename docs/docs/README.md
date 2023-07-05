@@ -53,27 +53,40 @@ library(dplyr)
 library(freedomhouse)
 
 # Search for "trade union" in the sub_item_description column
-category_scores_items %>%
+country_scores %>%
   filter(grepl("trade union", sub_item_description))
-#> # A tibble: 1 × 4
-#>   item  sub_item item_description                        sub_item_description   
-#>   <chr> <chr>    <chr>                                   <chr>                  
-#> 1 E     E3       Associational and Organizational Rights Is there freedom for t…
+#> # A tibble: 2,305 × 10
+#>     year country_territory iso2c iso3c continent item  sub_item item_description
+#>    <int> <fct>             <fct> <fct> <fct>     <fct> <fct>    <fct>           
+#>  1  2022 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  2  2022 Afghanistan       AF    AFG   Asia      E     E3       Associational a…
+#>  3  2022 Albania           AL    ALB   Europe    E     E3       Associational a…
+#>  4  2022 Algeria           DZ    DZA   Africa    E     E3       Associational a…
+#>  5  2022 Andorra           AD    AND   Europe    E     E3       Associational a…
+#>  6  2022 Angola            AO    AGO   Africa    E     E3       Associational a…
+#>  7  2022 Antigua and Barb… AG    ATG   Americas  E     E3       Associational a…
+#>  8  2022 Argentina         AR    ARG   Americas  E     E3       Associational a…
+#>  9  2022 Armenia           AM    ARM   Asia      E     E3       Associational a…
+#> 10  2022 Australia         AU    AUS   Oceania   E     E3       Associational a…
+#> # ℹ 2,295 more rows
+#> # ℹ 2 more variables: sub_item_description <fct>, score <int>
 
 # Get the full description of the sub-item
-category_scores_items %>%
+country_scores %>%
   filter(sub_item == "E3") %>%
+  distinct(sub_item_description) %>%
   pull(sub_item_description)
-#> [1] "Is there freedom for trade unions and similar professional or labor organizations?"
+#> [1] Is there freedom for trade unions and similar professional or labor organizations?
+#> 25 Levels: Are individuals able to exercise the right to own property and establish private businesses without undue interference from state or nonstate actors? ...
 
 # Filter by sub-item code and country code for trade unions in Canada
-category_scores %>%
+country_scores %>%
   filter(
     sub_item == "E3",
     iso3c == "CAN"
   )  %>%
   inner_join(
-    country_ratings_texts %>%
+    country_rating_texts %>%
       select(year, iso3c, sub_item, detail) %>%
       filter(
         sub_item == "E3",
@@ -92,6 +105,11 @@ category_scores %>%
 #> 5  2018 CAN   E3           4 Trade unions and business associations enjoy high …
 #> 6  2017 CAN   E3           4 Trade unions and business associations enjoy high …
 ```
+
+## Shiny
+
+There is an example with Shiny
+[here](https://github.com/pachadotdev/freedomhouse/tree/main/shiny-demo).
 
 ## Translations
 
@@ -116,43 +134,66 @@ library(dplyr)
 Las variables que contienen los datos van a estar disponibles
 inmediatamente para su uso, pero los datos no se traducirán hasta que la
 variable sea “llamada” explícitamente en el código que se escriba. En
-este ejemplo, el *dataset* `puntajes_por_categoria`, que proviene de
-`freedomhouse::category_scores`, se carga en la memoria de R en el
+este ejemplo, el *dataset* `puntajes_pais`, que proviene de
+`freedomhouse::country_scores`, se carga en la memoria de R en el
 momento en que lo llamamos por primera vez en español:
 
 ``` r
-glimpse(puntajes_por_categoria)
+glimpse(puntaje_pais)
 #> Rows: 57,625
-#> Columns: 8
-#> $ anio            <int> 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, …
-#> $ pais_territorio <fct> Abjasia, Abjasia, Abjasia, Abjasia, Abjasia, Abjasia, …
-#> $ iso2c           <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-#> $ iso3c           <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-#> $ continente      <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
-#> $ item            <fct> A, A, A, B, B, B, B, C, C, C, D, D, D, D, E, E, E, F, …
-#> $ sub_item        <fct> A1, A2, A3, B1, B2, B3, B4, C1, C2, C3, D1, D2, D3, D4…
-#> $ puntaje         <int> 2, 2, 1, 2, 3, 2, 1, 1, 1, 2, 2, 2, 1, 3, 3, 1, 1, 1, …
+#> Columns: 10
+#> $ anio                      <int> 2022, 2022, 2022, 2022, 2022, 2022, 2022, 20…
+#> $ pais_territorio           <fct> Abjasia, Abjasia, Abjasia, Abjasia, Abjasia,…
+#> $ iso2c                     <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+#> $ iso3c                     <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+#> $ continente                <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, As…
+#> $ categoria                 <fct> A, A, A, B, B, B, B, C, C, C, D, D, D, D, E,…
+#> $ sub_categoria             <fct> A1, A2, A3, B1, B2, B3, B4, C1, C2, C3, D1, …
+#> $ descripcion_categoria     <fct> Derechos políticos, Derechos políticos, Dere…
+#> $ descripcion_sub_categoria <fct> "¿Fue el actual jefe de gobierno u otra auto…
+#> $ puntaje                   <int> 2, 2, 1, 2, 3, 2, 1, 1, 1, 2, 2, 2, 1, 3, 3,…
 ```
 
 Los datos traducidos quedarán cargados durante toda la sesión de R:
 
 ``` r
-puntajes_por_categoria %>%
+puntaje_pais %>%
   filter(pais_territorio == "Canad\u00e1")
-#> # A tibble: 275 × 8
-#>     anio pais_territorio iso2c iso3c continente   item  sub_item puntaje
-#>    <int> <fct>           <fct> <fct> <fct>        <fct> <fct>      <int>
-#>  1  2022 Canadá          CA    CAN   Las Américas A     A1             4
-#>  2  2022 Canadá          CA    CAN   Las Américas A     A2             4
-#>  3  2022 Canadá          CA    CAN   Las Américas A     A3             4
-#>  4  2022 Canadá          CA    CAN   Las Américas B     B1             4
-#>  5  2022 Canadá          CA    CAN   Las Américas B     B2             4
-#>  6  2022 Canadá          CA    CAN   Las Américas B     B3             4
-#>  7  2022 Canadá          CA    CAN   Las Américas B     B4             4
-#>  8  2022 Canadá          CA    CAN   Las Américas C     C1             4
-#>  9  2022 Canadá          CA    CAN   Las Américas C     C2             4
-#> 10  2022 Canadá          CA    CAN   Las Américas C     C3             4
+#> # A tibble: 275 × 10
+#>     anio pais_territorio iso2c iso3c continente   categoria sub_categoria
+#>    <int> <fct>           <fct> <fct> <fct>        <fct>     <fct>        
+#>  1  2022 Canadá          CA    CAN   Las Américas A         A1           
+#>  2  2022 Canadá          CA    CAN   Las Américas A         A2           
+#>  3  2022 Canadá          CA    CAN   Las Américas A         A3           
+#>  4  2022 Canadá          CA    CAN   Las Américas B         B1           
+#>  5  2022 Canadá          CA    CAN   Las Américas B         B2           
+#>  6  2022 Canadá          CA    CAN   Las Américas B         B3           
+#>  7  2022 Canadá          CA    CAN   Las Américas B         B4           
+#>  8  2022 Canadá          CA    CAN   Las Américas C         C1           
+#>  9  2022 Canadá          CA    CAN   Las Américas C         C2           
+#> 10  2022 Canadá          CA    CAN   Las Américas C         C3           
 #> # ℹ 265 more rows
+#> # ℹ 3 more variables: descripcion_categoria <fct>,
+#> #   descripcion_sub_categoria <fct>, puntaje <int>
+
+puntaje_pais %>%
+  filter(pais_territorio == "Canadá")
+#> # A tibble: 275 × 10
+#>     anio pais_territorio iso2c iso3c continente   categoria sub_categoria
+#>    <int> <fct>           <fct> <fct> <fct>        <fct>     <fct>        
+#>  1  2022 Canadá          CA    CAN   Las Américas A         A1           
+#>  2  2022 Canadá          CA    CAN   Las Américas A         A2           
+#>  3  2022 Canadá          CA    CAN   Las Américas A         A3           
+#>  4  2022 Canadá          CA    CAN   Las Américas B         B1           
+#>  5  2022 Canadá          CA    CAN   Las Américas B         B2           
+#>  6  2022 Canadá          CA    CAN   Las Américas B         B3           
+#>  7  2022 Canadá          CA    CAN   Las Américas B         B4           
+#>  8  2022 Canadá          CA    CAN   Las Américas C         C1           
+#>  9  2022 Canadá          CA    CAN   Las Américas C         C2           
+#> 10  2022 Canadá          CA    CAN   Las Américas C         C3           
+#> # ℹ 265 more rows
+#> # ℹ 3 more variables: descripcion_categoria <fct>,
+#> #   descripcion_sub_categoria <fct>, puntaje <int>
 ```
 
 ## Development
@@ -167,8 +208,10 @@ puntajes_por_categoria %>%
 
 ``` r
 devtools::load_all()
-writeLines(create_rd("inst/specs/category_scores.yml"),
-  "man/puntajes_por_categoria.Rd")
+writeLines(create_rd("inst/specs/country_scores.yml"),
+  "man/puntaje_pais.Rd")
+writeLines(create_rd("inst/specs/country_rating_statuses.yml"),
+  "man/estado_calificacion_pais.Rd")
 ```
 
 3.  Verify:
@@ -186,4 +229,13 @@ devtools::check()
 
 ``` bash
 casadelalibertad (main) $ bash dev/fix_non_ascii.sh 
+```
+
+5.  Update site:
+
+<!-- end list -->
+
+``` r
+unlink("docs", recursive = TRUE)
+altdoc::use_mkdocs(theme = "readthedocs")
 ```
