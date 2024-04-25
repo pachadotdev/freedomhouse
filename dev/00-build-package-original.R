@@ -954,4 +954,5 @@ use_git_ignore("README_files")
 document()
 check()
 
+use_news_md()
 use_readme_rmd()

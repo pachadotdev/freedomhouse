@@ -25,8 +25,7 @@ sub-item scores, that you find in around 1,000 links of the form
 in a single tidy table. This is useful for text mining and sentiment
 analysis.
 
-Another addition of mine was is to add translations, such as the side
-package `casadelalibertad`.
+Another addition of mine was is to add translations.
 
 ## Installation
 
@@ -145,17 +144,10 @@ puntaje_pais %>%
 
 ## Development
 
-To verify any changes, run the following commands:
+To verify the changes made to the package, run the following commands:
 
 ``` r
 devtools::document()
 attachment::att_amend_desc()
 devtools::check()
-```
-
-Then update the site with:
-
-``` r
-unlink("docs", recursive = TRUE)
-altdoc::use_mkdocs(theme = "readthedocs")
 ```
