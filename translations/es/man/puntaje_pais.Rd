@@ -1,8 +1,8 @@
 \docType{data}
 \name{puntaje_pais}
 \alias{puntaje_pais}
-\title{Puntajes Desagregados de la Libertad en el Mundo, 2012-2022}
-\format{Un data.frame de 57.625 filas y 8 columnas
+\title{Puntajes Desagregados de la Libertad en el Mundo, 2012-2023}
+\format{Un data.frame de 62.875 filas y 10 columnas
 \describe{
 \item{anio}{Año de la observación (2012-2022)}
 \item{pais_territorio}{Nombre del país o territorio}

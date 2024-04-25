@@ -75,7 +75,7 @@ country_scores %>%
   filter(
     sub_item == "E3",
     iso3c == "CAN"
-  )  %>%
+  ) %>%
   inner_join(
     country_rating_texts %>%
       select(year, iso3c, sub_item, detail) %>%
@@ -94,51 +94,27 @@ There is an example with Shiny [here](https://github.com/pachadotdev/freedomhous
 
 ## Translations
 
+### Templates in Excel
+
+The directory `dev/es` contains the Excel files with the translations. These
+can be used as templates for translations to other languages different from
+Spanish.
+
+What I did to add the translations in R was to use the `left_join` function
+from the `dplyr` package to match each country/item/sub-item with the
+corresponding translation.
+
 ### Spanish
 
-Las traducciones disponibles dentro de `casadelalibertad` son las siguientes:
+El _dataset_ `puntajes_pais` es una traducción del original `country_scores`:
 
-```{r es1, echo = FALSE}
-library(purrr)
-library(dplyr)
-library(yaml)
-
-specs <- list.files("translations/es/inst/specs", full.names = T)
-all <- map(specs, read_yaml)
-sources <- map_chr(all, ~ .x$df$source)
-
-pkgs <- tibble(
-  Nombre = map_chr(all, ~ .x$df$name),
-  Titulo = map_chr(all, ~ .x$help$title),
-  Dataset = map_chr(strsplit(sources, "::"), ~ .x[[2]])
-)
-
-pkgs %>%
-  arrange(Dataset) %>%
-  knitr::kable()
-```
-
-El paquete `casadelalibertad` se carga igual que todos los paquetes de R: 
-
-```{r es2}
-library(casadelalibertad)
-library(dplyr)
-```
-
-Las variables que contienen los datos van a estar disponibles inmediatamente
-para su uso, pero los datos no se traducirán hasta que la variable sea "llamada"
-explícitamente en el código que se escriba. En este ejemplo, el _dataset_
-`puntajes_pais`, que proviene de `freedomhouse::country_scores`, se 
-carga en la memoria de R en el momento en que lo llamamos por primera vez en 
-español:
-
-```{r es3}
+```r
 glimpse(puntaje_pais)
 ```
 
 Los datos traducidos quedarán cargados durante toda la sesión de R:
 
-```{r es4}
+```r
 puntaje_pais %>%
   filter(pais_territorio == "Canad\u00e1")
 
@@ -148,40 +124,17 @@ puntaje_pais %>%
 
 ## Development
 
-(This is a note for myself)
-
-1. Open `translations/es`.
-
-2. Document:
+To verify any changes, run the following commands:
 
 ```r
-devtools::load_all()
-writeLines(create_rd("inst/specs/country_scores.yml"),
-  "man/puntaje_pais.Rd")
-writeLines(create_rd("inst/specs/country_rating_statuses.yml"),
-  "man/estado_calificacion_pais.Rd")
-```
-
-3. Verify:
-
-```r
+devtools::document()
 attachment::att_amend_desc()
 devtools::check()
 ```
 
-4. Fix non-ASCII characters:
-
-```bash
-es (main) $ bash dev/fix_non_ascii.sh 
-```
-
-5. Open `freedomhouse/`.
-
-6. Update site:
+Then update the site with:
 
 ```r
 unlink("docs", recursive = TRUE)
 altdoc::use_mkdocs(theme = "readthedocs")
 ```
-
-7. Push

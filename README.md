@@ -55,20 +55,20 @@ library(freedomhouse)
 # Search for "trade union" in the sub_item_description column
 country_scores %>%
   filter(grepl("trade union", sub_item_description))
-#> # A tibble: 2,305 × 10
+#> # A tibble: 2,515 × 10
 #>     year country_territory iso2c iso3c continent item  sub_item item_description
 #>    <int> <fct>             <fct> <fct> <fct>     <fct> <fct>    <fct>           
-#>  1  2022 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  2  2022 Afghanistan       AF    AFG   Asia      E     E3       Associational a…
-#>  3  2022 Albania           AL    ALB   Europe    E     E3       Associational a…
-#>  4  2022 Algeria           DZ    DZA   Africa    E     E3       Associational a…
-#>  5  2022 Andorra           AD    AND   Europe    E     E3       Associational a…
-#>  6  2022 Angola            AO    AGO   Africa    E     E3       Associational a…
-#>  7  2022 Antigua and Barb… AG    ATG   Americas  E     E3       Associational a…
-#>  8  2022 Argentina         AR    ARG   Americas  E     E3       Associational a…
-#>  9  2022 Armenia           AM    ARM   Asia      E     E3       Associational a…
-#> 10  2022 Australia         AU    AUS   Oceania   E     E3       Associational a…
-#> # ℹ 2,295 more rows
+#>  1  2012 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  2  2013 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  3  2014 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  4  2015 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  5  2016 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  6  2017 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  7  2018 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  8  2019 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  9  2020 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#> 10  2021 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#> # ℹ 2,505 more rows
 #> # ℹ 2 more variables: sub_item_description <fct>, score <int>
 
 # Get the full description of the sub-item
@@ -77,14 +77,14 @@ country_scores %>%
   distinct(sub_item_description) %>%
   pull(sub_item_description)
 #> [1] Is there freedom for trade unions and similar professional or labor organizations?
-#> 25 Levels: Are individuals able to exercise the right to own property and establish private businesses without undue interference from state or nonstate actors? ...
+#> 26 Levels: Are individuals able to exercise the right to own property and establish private businesses without undue interference from state or nonstate actors? ...
 
 # Filter by sub-item code and country code for trade unions in Canada
 country_scores %>%
   filter(
     sub_item == "E3",
     iso3c == "CAN"
-  )  %>%
+  ) %>%
   inner_join(
     country_rating_texts %>%
       select(year, iso3c, sub_item, detail) %>%
@@ -95,15 +95,16 @@ country_scores %>%
     by = c("year", "iso3c", "sub_item")
   ) %>%
   select(year, iso3c, sub_item, score, detail)
-#> # A tibble: 6 × 5
+#> # A tibble: 7 × 5
 #>    year iso3c sub_item score detail                                             
-#>   <int> <fct> <chr>    <int> <chr>                                              
-#> 1  2022 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 2  2021 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 3  2020 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 4  2019 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 5  2018 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 6  2017 CAN   E3           4 Trade unions and business associations enjoy high …
+#>   <int> <fct> <fct>    <int> <chr>                                              
+#> 1  2017 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 2  2018 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 3  2019 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 4  2020 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 5  2021 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 6  2022 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 7  2023 CAN   E3           4 Trade unions and business associations enjoy high …
 ```
 
 ## Shiny
@@ -113,45 +114,23 @@ There is an example with Shiny
 
 ## Translations
 
+### Templates in Excel
+
+The directory `dev/es` contains the Excel files with the translations.
+These can be used as templates for translations to other languages
+different from Spanish.
+
+What I did to add the translations in R was to use the `left_join`
+function from the `dplyr` package to match each country/item/sub-item
+with the corresponding translation.
+
 ### Spanish
 
-Las traducciones disponibles dentro de `casadelalibertad` son las
-siguientes:
-
-| Nombre                     | Titulo                                                      | Dataset                   |
-| :------------------------- | :---------------------------------------------------------- | :------------------------ |
-| estado\_calificacion\_pais | Libertades Civiles y Derechos Políticos, 1972-2022          | country\_rating\_statuses |
-| puntaje\_pais              | Puntajes Desagregados de la Libertad en el Mundo, 2012-2022 | country\_scores           |
-
-El paquete `casadelalibertad` se carga igual que todos los paquetes de
-R:
-
-``` r
-library(casadelalibertad)
-library(dplyr)
-```
-
-Las variables que contienen los datos van a estar disponibles
-inmediatamente para su uso, pero los datos no se traducirán hasta que la
-variable sea “llamada” explícitamente en el código que se escriba. En
-este ejemplo, el *dataset* `puntajes_pais`, que proviene de
-`freedomhouse::country_scores`, se carga en la memoria de R en el
-momento en que lo llamamos por primera vez en español:
+El *dataset* `puntajes_pais` es una traducción del original
+`country_scores`:
 
 ``` r
 glimpse(puntaje_pais)
-#> Rows: 57,625
-#> Columns: 10
-#> $ anio                      <int> 2022, 2022, 2022, 2022, 2022, 2022, 2022, 20…
-#> $ pais_territorio           <fct> Abjasia, Abjasia, Abjasia, Abjasia, Abjasia,…
-#> $ iso2c                     <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-#> $ iso3c                     <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-#> $ continente                <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, As…
-#> $ categoria                 <fct> A, A, A, B, B, B, B, C, C, C, D, D, D, D, E,…
-#> $ sub_categoria             <fct> A1, A2, A3, B1, B2, B3, B4, C1, C2, C3, D1, …
-#> $ descripcion_categoria     <fct> Derechos políticos, Derechos políticos, Dere…
-#> $ descripcion_sub_categoria <fct> "¿Fue el actual jefe de gobierno u otra auto…
-#> $ puntaje                   <int> 2, 2, 1, 2, 3, 2, 1, 1, 1, 2, 2, 2, 1, 3, 3,…
 ```
 
 Los datos traducidos quedarán cargados durante toda la sesión de R:
@@ -159,87 +138,24 @@ Los datos traducidos quedarán cargados durante toda la sesión de R:
 ``` r
 puntaje_pais %>%
   filter(pais_territorio == "Canad\u00e1")
-#> # A tibble: 275 × 10
-#>     anio pais_territorio iso2c iso3c continente   categoria sub_categoria
-#>    <int> <fct>           <fct> <fct> <fct>        <fct>     <fct>        
-#>  1  2022 Canadá          CA    CAN   Las Américas A         A1           
-#>  2  2022 Canadá          CA    CAN   Las Américas A         A2           
-#>  3  2022 Canadá          CA    CAN   Las Américas A         A3           
-#>  4  2022 Canadá          CA    CAN   Las Américas B         B1           
-#>  5  2022 Canadá          CA    CAN   Las Américas B         B2           
-#>  6  2022 Canadá          CA    CAN   Las Américas B         B3           
-#>  7  2022 Canadá          CA    CAN   Las Américas B         B4           
-#>  8  2022 Canadá          CA    CAN   Las Américas C         C1           
-#>  9  2022 Canadá          CA    CAN   Las Américas C         C2           
-#> 10  2022 Canadá          CA    CAN   Las Américas C         C3           
-#> # ℹ 265 more rows
-#> # ℹ 3 more variables: descripcion_categoria <fct>,
-#> #   descripcion_sub_categoria <fct>, puntaje <int>
 
 puntaje_pais %>%
   filter(pais_territorio == "Canadá")
-#> # A tibble: 275 × 10
-#>     anio pais_territorio iso2c iso3c continente   categoria sub_categoria
-#>    <int> <fct>           <fct> <fct> <fct>        <fct>     <fct>        
-#>  1  2022 Canadá          CA    CAN   Las Américas A         A1           
-#>  2  2022 Canadá          CA    CAN   Las Américas A         A2           
-#>  3  2022 Canadá          CA    CAN   Las Américas A         A3           
-#>  4  2022 Canadá          CA    CAN   Las Américas B         B1           
-#>  5  2022 Canadá          CA    CAN   Las Américas B         B2           
-#>  6  2022 Canadá          CA    CAN   Las Américas B         B3           
-#>  7  2022 Canadá          CA    CAN   Las Américas B         B4           
-#>  8  2022 Canadá          CA    CAN   Las Américas C         C1           
-#>  9  2022 Canadá          CA    CAN   Las Américas C         C2           
-#> 10  2022 Canadá          CA    CAN   Las Américas C         C3           
-#> # ℹ 265 more rows
-#> # ℹ 3 more variables: descripcion_categoria <fct>,
-#> #   descripcion_sub_categoria <fct>, puntaje <int>
 ```
 
 ## Development
 
-(This is a note for myself)
-
-1.  Open `translations/es`.
-
-2.  Document:
-
-<!-- end list -->
+To verify any changes, run the following commands:
 
 ``` r
-devtools::load_all()
-writeLines(create_rd("inst/specs/country_scores.yml"),
-  "man/puntaje_pais.Rd")
-writeLines(create_rd("inst/specs/country_rating_statuses.yml"),
-  "man/estado_calificacion_pais.Rd")
-```
-
-3.  Verify:
-
-<!-- end list -->
-
-``` r
+devtools::document()
 attachment::att_amend_desc()
 devtools::check()
 ```
 
-4.  Fix non-ASCII characters:
-
-<!-- end list -->
-
-``` bash
-es (main) $ bash dev/fix_non_ascii.sh 
-```
-
-5.  Open `freedomhouse/`.
-
-6.  Update site:
-
-<!-- end list -->
+Then update the site with:
 
 ``` r
 unlink("docs", recursive = TRUE)
 altdoc::use_mkdocs(theme = "readthedocs")
 ```
-
-7.  Push

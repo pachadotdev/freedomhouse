@@ -1,8 +1,8 @@
 \docType{data}
 \name{estado_calificacion_pais}
 \alias{estado_calificacion_pais}
-\title{Libertades Civiles y Derechos Políticos, 1972-2022}
-\format{Un data.frame de 9.043 filas y 9 columnas
+\title{Libertades Civiles y Derechos Políticos, 1972-2023}
+\format{Un data.frame de 9.238 filas y 9 columnas
 \describe{
 \item{anio}{Año de la observación (1972-2022)}
 \item{pais}{Nombre del país o territorio}

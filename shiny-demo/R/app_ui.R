@@ -18,7 +18,7 @@ app_ui <- function(request) {
         collapsed = FALSE,
         selectInput(
           inputId = "country",
-          label = "Select a country",
+          label = "Select a nation",
           choices =  list_countries(), # see golem_utils_ui.R
           selected = "Canada"
         ),

@@ -3,9 +3,9 @@
 \docType{data}
 \name{country_rating_statuses}
 \alias{country_rating_statuses}
-\title{Civil Liberties and Political Rights Ratings, 1972-2022}
+\title{Civil Liberties and Political Rights Ratings, 1972-2023}
 \format{
-A \code{data frame} with 9,043 observations and 9 variables.
+A \code{data frame} with 9,238 observations and 9 variables.
 }
 \source{
 Adapted from Freedom House.
@@ -23,7 +23,7 @@ and personal autonomy and individual rights.
 
 
 \itemize{
-\item \code{year}: Year of observation (1972-2022). The survey is applied the year after.
+\item \code{year}: Year of observation (1972-2023). The survey is applied the year after.
 \item \code{country}: Country name.
 \item \code{iso2c}: ISO 2-character country code. Czechoslovakia, Kosovo, Micronesia,
 Serbia and Montenegro, and Yugoslavia do not have unambiguous matches and appear as 'NA'.
@@ -40,8 +40,8 @@ highest degree of Freedom and seven the lowest).
 }
 
 \references{
-Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
-Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
-Accessed 2022-10-01.
+Freedom House. 2024. Freedom in the World 2024: The Mounting Damage of Flawed Elections and Armed Conflict.
+Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2024/mounting-damage-flawed-elections-and-armed-conflict.
+Accessed 2024-04-25.
 }
 \keyword{datasets}
