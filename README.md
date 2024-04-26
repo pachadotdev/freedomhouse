@@ -52,40 +52,39 @@ library(dplyr)
 library(freedomhouse)
 
 # Search for "trade union" in the sub_item_description column
-country_scores %>%
+country_score %>%
   filter(grepl("trade union", sub_item_description))
 #> # A tibble: 2,515 × 10
 #>     year country_territory iso2c iso3c continent item  sub_item item_description
-#>    <int> <fct>             <fct> <fct> <fct>     <fct> <fct>    <fct>           
-#>  1  2012 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  2  2013 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  3  2014 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  4  2015 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  5  2016 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  6  2017 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  7  2018 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  8  2019 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#>  9  2020 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
-#> 10  2021 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>    <int> <chr>             <fct> <fct> <fct>     <fct> <fct>    <fct>           
+#>  1  2023 Abkhazia          <NA>  <NA>  Asia      E     E3       Associational a…
+#>  2  2023 Afghanistan       AF    AFG   Asia      E     E3       Associational a…
+#>  3  2023 Albania           AL    ALB   Europe    E     E3       Associational a…
+#>  4  2023 Algeria           DZ    DZA   Africa    E     E3       Associational a…
+#>  5  2023 Andorra           AD    AND   Europe    E     E3       Associational a…
+#>  6  2023 Angola            AO    AGO   Africa    E     E3       Associational a…
+#>  7  2023 Antigua and Barb… AG    ATG   Americas  E     E3       Associational a…
+#>  8  2023 Argentina         AR    ARG   Americas  E     E3       Associational a…
+#>  9  2023 Armenia           AM    ARM   Asia      E     E3       Associational a…
+#> 10  2023 Australia         AU    AUS   Oceania   E     E3       Associational a…
 #> # ℹ 2,505 more rows
-#> # ℹ 2 more variables: sub_item_description <fct>, score <int>
+#> # ℹ 2 more variables: sub_item_description <chr>, score <int>
 
 # Get the full description of the sub-item
-country_scores %>%
+country_score %>%
   filter(sub_item == "E3") %>%
   distinct(sub_item_description) %>%
   pull(sub_item_description)
-#> [1] Is there freedom for trade unions and similar professional or labor organizations?
-#> 26 Levels: Are individuals able to exercise the right to own property and establish private businesses without undue interference from state or nonstate actors? ...
+#> [1] "Is there freedom for trade unions and similar professional or labor organizations?"
 
 # Filter by sub-item code and country code for trade unions in Canada
-country_scores %>%
+country_score %>%
   filter(
     sub_item == "E3",
     iso3c == "CAN"
   ) %>%
   inner_join(
-    country_rating_texts %>%
+    country_rating_text %>%
       select(year, iso3c, sub_item, detail) %>%
       filter(
         sub_item == "E3",
@@ -97,13 +96,13 @@ country_scores %>%
 #> # A tibble: 7 × 5
 #>    year iso3c sub_item score detail                                             
 #>   <int> <fct> <fct>    <int> <chr>                                              
-#> 1  2017 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 2  2018 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 3  2019 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 1  2023 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 2  2022 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 3  2021 CAN   E3           4 Trade unions and business associations enjoy high …
 #> 4  2020 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 5  2021 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 6  2022 CAN   E3           4 Trade unions and business associations enjoy high …
-#> 7  2023 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 5  2019 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 6  2018 CAN   E3           4 Trade unions and business associations enjoy high …
+#> 7  2017 CAN   E3           4 Trade unions and business associations enjoy high …
 ```
 
 ## Shiny
@@ -115,9 +114,9 @@ There is an example with Shiny
 
 ### Templates in Excel
 
-The directory `dev/es` contains the Excel files with the translations.
-These can be used as templates for translations to other languages
-different from Spanish.
+The directory `dev/texts` contains the Excel files that I used for the
+translations in `dev/texts/translation_es`. These can be used as
+templates for translations to other languages different from Spanish.
 
 What I did to add the translations in R was to use the `left_join`
 function from the `dplyr` package to match each country/item/sub-item
@@ -126,7 +125,7 @@ with the corresponding translation.
 ### Spanish
 
 El *dataset* `puntaje_pais` es una traducción del original
-`country_scores`:
+`country_score`:
 
 ``` r
 > glimpse(puntaje_pais)
@@ -189,7 +188,7 @@ $ puntaje                   <int> 3, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 1, 3, 2,�
 ```
 
 `texto_calificacion_pais` es una traducción del original
-`country_rating_texts`:
+`country_rating_text`:
 
 ``` r
 > glimpse(texto_calificacion_pais)

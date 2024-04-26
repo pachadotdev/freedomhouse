@@ -60,23 +60,23 @@ library(dplyr)
 library(freedomhouse)
 
 # Search for "trade union" in the sub_item_description column
-country_scores %>%
+country_score %>%
   filter(grepl("trade union", sub_item_description))
 
 # Get the full description of the sub-item
-country_scores %>%
+country_score %>%
   filter(sub_item == "E3") %>%
   distinct(sub_item_description) %>%
   pull(sub_item_description)
 
 # Filter by sub-item code and country code for trade unions in Canada
-country_scores %>%
+country_score %>%
   filter(
     sub_item == "E3",
     iso3c == "CAN"
   ) %>%
   inner_join(
-    country_rating_texts %>%
+    country_rating_text %>%
       select(year, iso3c, sub_item, detail) %>%
       filter(
         sub_item == "E3",
@@ -95,9 +95,9 @@ There is an example with Shiny [here](https://github.com/pachadotdev/freedomhous
 
 ### Templates in Excel
 
-The directory `dev/es` contains the Excel files with the translations. These
-can be used as templates for translations to other languages different from
-Spanish.
+The directory `dev/texts` contains the Excel files that I used for the
+translations in `dev/texts/translation_es`. These can be used as templates for
+translations to other languages different from Spanish.
 
 What I did to add the translations in R was to use the `left_join` function
 from the `dplyr` package to match each country/item/sub-item with the
@@ -105,7 +105,7 @@ corresponding translation.
 
 ### Spanish
 
-El _dataset_ `puntaje_pais` es una traducción del original `country_scores`:
+El _dataset_ `puntaje_pais` es una traducción del original `country_score`:
 
 ```r
 > glimpse(puntaje_pais)
@@ -167,7 +167,7 @@ $ puntaje                   <int> 3, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 1, 3, 2,�
 # ℹ Use `print(n = ...)` to see more rows
 ```
 
-`texto_calificacion_pais` es una traducción del original `country_rating_texts`:
+`texto_calificacion_pais` es una traducción del original `country_rating_text`:
 
 ```r
 > glimpse(texto_calificacion_pais)

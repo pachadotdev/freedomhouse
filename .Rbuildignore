@@ -10,3 +10,4 @@
 ^cran-comments\.md$
 ^translations$
 ^shiny-demo$
+^\.github$

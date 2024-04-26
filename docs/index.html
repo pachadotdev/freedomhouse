@@ -96,40 +96,39 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/freedomhouse/" class="external-link">freedomhouse</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Search for "trade union" in the sub_item_description column</span></span>
-<span><span class="va">country_scores</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">country_score</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"trade union"</span>, <span class="va">sub_item_description</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2,515 × 10</span></span>
 <span><span class="co">#&gt;     year country_territory iso2c iso3c continent item  sub_item item_description</span></span>
-<span><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;             &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;           </span></span>
-<span><span class="co">#&gt;  1  2012 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt;  2  2013 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt;  3  2014 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt;  4  2015 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt;  5  2016 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt;  6  2017 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt;  7  2018 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt;  8  2019 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt;  9  2020 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
-<span><span class="co">#&gt; 10  2021 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;             &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;           </span></span>
+<span><span class="co">#&gt;  1  2023 Abkhazia          &lt;NA&gt;  &lt;NA&gt;  Asia      E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;  2  2023 Afghanistan       AF    AFG   Asia      E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;  3  2023 Albania           AL    ALB   Europe    E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;  4  2023 Algeria           DZ    DZA   Africa    E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;  5  2023 Andorra           AD    AND   Europe    E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;  6  2023 Angola            AO    AGO   Africa    E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;  7  2023 Antigua and Barb… AG    ATG   Americas  E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;  8  2023 Argentina         AR    ARG   Americas  E     E3       Associational a…</span></span>
+<span><span class="co">#&gt;  9  2023 Armenia           AM    ARM   Asia      E     E3       Associational a…</span></span>
+<span><span class="co">#&gt; 10  2023 Australia         AU    AUS   Oceania   E     E3       Associational a…</span></span>
 <span><span class="co">#&gt; # ℹ 2,505 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 2 more variables: sub_item_description &lt;fct&gt;, score &lt;int&gt;</span></span>
+<span><span class="co">#&gt; # ℹ 2 more variables: sub_item_description &lt;chr&gt;, score &lt;int&gt;</span></span>
 <span></span>
 <span><span class="co"># Get the full description of the sub-item</span></span>
-<span><span class="va">country_scores</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">country_score</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sub_item</span> <span class="op">==</span> <span class="st">"E3"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">sub_item_description</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">sub_item_description</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] Is there freedom for trade unions and similar professional or labor organizations?</span></span>
-<span><span class="co">#&gt; 26 Levels: Are individuals able to exercise the right to own property and establish private businesses without undue interference from state or nonstate actors? ...</span></span>
+<span><span class="co">#&gt; [1] "Is there freedom for trade unions and similar professional or labor organizations?"</span></span>
 <span></span>
 <span><span class="co"># Filter by sub-item code and country code for trade unions in Canada</span></span>
-<span><span class="va">country_scores</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">country_score</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
 <span>    <span class="va">sub_item</span> <span class="op">==</span> <span class="st">"E3"</span>,</span>
 <span>    <span class="va">iso3c</span> <span class="op">==</span> <span class="st">"CAN"</span></span>
 <span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span><span class="op">(</span></span>
-<span>    <span class="va">country_rating_texts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="va">country_rating_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">iso3c</span>, <span class="va">sub_item</span>, <span class="va">detail</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span>
 <span>        <span class="va">sub_item</span> <span class="op">==</span> <span class="st">"E3"</span>,</span>
@@ -141,13 +140,13 @@
 <span><span class="co">#&gt; # A tibble: 7 × 5</span></span>
 <span><span class="co">#&gt;    year iso3c sub_item score detail                                             </span></span>
 <span><span class="co">#&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;chr&gt;                                              </span></span>
-<span><span class="co">#&gt; 1  2017 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
-<span><span class="co">#&gt; 2  2018 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
-<span><span class="co">#&gt; 3  2019 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span><span class="co">#&gt; 1  2023 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span><span class="co">#&gt; 2  2022 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span><span class="co">#&gt; 3  2021 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
 <span><span class="co">#&gt; 4  2020 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
-<span><span class="co">#&gt; 5  2021 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
-<span><span class="co">#&gt; 6  2022 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
-<span><span class="co">#&gt; 7  2023 CAN   E3           4 Trade unions and business associations enjoy high …</span></span></code></pre></div>
+<span><span class="co">#&gt; 5  2019 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span><span class="co">#&gt; 6  2018 CAN   E3           4 Trade unions and business associations enjoy high …</span></span>
+<span><span class="co">#&gt; 7  2017 CAN   E3           4 Trade unions and business associations enjoy high …</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="shiny">Shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
@@ -160,13 +159,13 @@
 <div class="section level3">
 <h3 id="templates-in-excel">Templates in Excel<a class="anchor" aria-label="anchor" href="#templates-in-excel"></a>
 </h3>
-<p>The directory <code>dev/es</code> contains the Excel files with the translations. These can be used as templates for translations to other languages different from Spanish.</p>
+<p>The directory <code>dev/texts</code> contains the Excel files that I used for the translations in <code>dev/texts/translation_es</code>. These can be used as templates for translations to other languages different from Spanish.</p>
 <p>What I did to add the translations in R was to use the <code>left_join</code> function from the <code>dplyr</code> package to match each country/item/sub-item with the corresponding translation.</p>
 </div>
 <div class="section level3">
 <h3 id="spanish">Spanish<a class="anchor" aria-label="anchor" href="#spanish"></a>
 </h3>
-<p>El <em>dataset</em> <code>puntaje_pais</code> es una traducción del original <code>country_scores</code>:</p>
+<p>El <em>dataset</em> <code>puntaje_pais</code> es una traducción del original <code>country_score</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">glimpse</span>(puntaje_pais)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>Rows<span class="op">:</span><span class="st"> </span><span class="dv">62</span>,<span class="dv">875</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>Columns<span class="op">:</span><span class="st"> </span><span class="dv">10</span></span>
@@ -218,7 +217,7 @@
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="co"># ℹ 3 more variables: descripcion_categoria &lt;chr&gt;,</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="co">#   descripcion_sub_categoria &lt;chr&gt;, puntaje &lt;int&gt;</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
-<p><code>texto_calificacion_pais</code> es una traducción del original <code>country_rating_texts</code>:</p>
+<p><code>texto_calificacion_pais</code> es una traducción del original <code>country_rating_text</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">glimpse</span>(texto_calificacion_pais)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>Rows<span class="op">:</span><span class="st"> </span><span class="dv">29</span>,<span class="dv">587</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>Columns<span class="op">:</span><span class="st"> </span><span class="dv">7</span></span>

@@ -4,7 +4,7 @@
 \title{Puntajes Desagregados de la Libertad en el Mundo, 2012-2023}
 \format{Un data.frame de 62.875 filas y 10 columnas
 \describe{
-\item{anio}{Año de la observación (2012-2022)}
+\item{anio}{Año de la observación (2012-2023)}
 \item{pais_territorio}{Nombre del país o territorio}
 \item{iso2c}{Código ISO de dos dígitos del país o territorio. Abjasia, Crimea, Kosovo, Nagorno-Karabaj, Osetia del Sur, Palestina, Sahara Occidental y Transnistria no tienen una correspondencia inambigua y aparecen como 'NA'}
 \item{iso3c}{Código ISO de tres dígitos del país o territorio. Sigue el mismo criterio para los 'NA' que la variable iso2c.}

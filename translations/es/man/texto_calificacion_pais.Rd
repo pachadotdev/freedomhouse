@@ -2,9 +2,9 @@
 \name{texto_calificacion_pais}
 \alias{texto_calificacion_pais}
 \title{Libertades Civiles y Derechos Políticos, 1972-2023}
-\format{Un data.frame de 29,587 filas y 7 columnas
+\format{Un data.frame de 29,841 filas y 7 columnas
 \describe{
-\item{anio}{Año de la observación (2017-2022)}
+\item{anio}{Año de la observación (2017-2023)}
 \item{pais}{Nombre del país o territorio}
 \item{iso2c}{Código ISO de dos dígitos del país o territorio. Abjasia, Crimea, Kosovo, Nagorno-Karabaj, Osetia del Sur, Palestina, Sahara Occidental y Transnistria no tienen una correspondencia inambigua y aparecen como 'NA'}
 \item{iso3c}{Código ISO de tres dígitos del país o territorio. Sigue el mismo criterio para los 'NA' que la variable iso2c.}
