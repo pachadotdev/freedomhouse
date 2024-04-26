@@ -125,21 +125,101 @@ with the corresponding translation.
 
 ### Spanish
 
-El *dataset* `puntajes_pais` es una traducción del original
+El *dataset* `puntaje_pais` es una traducción del original
 `country_scores`:
 
 ``` r
-glimpse(puntaje_pais)
+> glimpse(puntaje_pais)
+Rows: 62,875
+Columns: 10
+$ anio                      <int> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 20…
+$ pais                      <chr> "Abjasia", "Abjasia", "Abjasia", "Abjasia", …
+$ iso2c                     <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ iso3c                     <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ continente                <chr> "Asia", "Asia", "Asia", "Asia", "Asia", "Asi…
+$ categoria                 <fct> A, A, A, B, B, B, B, C, C, C, D, D, D, D, E,…
+$ sub_categoria             <fct> A1, A2, A3, B1, B2, B3, B4, C1, C2, C3, D1, …
+$ descripcion_categoria     <chr> "Derechos políticos", "Derechos políticos", …
+$ descripcion_sub_categoria <chr> "¿Fue el actual jefe de gobierno u otra auto…
+$ puntaje                   <int> 3, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 1, 3, 2,…
 ```
 
-Los datos traducidos quedarán cargados durante toda la sesión de R:
+``` r
+> puntaje_pais %>%
+  filter(pais == "Canad\u00e1")
+# A tibble: 300 × 10
+    anio pais   iso2c iso3c continente   categoria sub_categoria
+   <int> <chr>  <fct> <fct> <chr>        <fct>     <fct>        
+ 1  2012 Canadá CA    CAN   Las Américas A         A1           
+ 2  2012 Canadá CA    CAN   Las Américas A         A2           
+ 3  2012 Canadá CA    CAN   Las Américas A         A3           
+ 4  2012 Canadá CA    CAN   Las Américas B         B1           
+ 5  2012 Canadá CA    CAN   Las Américas B         B2           
+ 6  2012 Canadá CA    CAN   Las Américas B         B3           
+ 7  2012 Canadá CA    CAN   Las Américas B         B4           
+ 8  2012 Canadá CA    CAN   Las Américas C         C1           
+ 9  2012 Canadá CA    CAN   Las Américas C         C2           
+10  2012 Canadá CA    CAN   Las Américas C         C3           
+# ℹ 290 more rows
+# ℹ 3 more variables: descripcion_categoria <chr>,
+#   descripcion_sub_categoria <chr>, puntaje <int>
+# ℹ Use `print(n = ...)` to see more rows
+```
 
 ``` r
-puntaje_pais %>%
-  filter(pais_territorio == "Canad\u00e1")
+> puntaje_pais %>%
+  filter(pais == "Canadá")
+# A tibble: 300 × 10
+    anio pais   iso2c iso3c continente   categoria sub_categoria
+   <int> <chr>  <fct> <fct> <chr>        <fct>     <fct>        
+ 1  2012 Canadá CA    CAN   Las Américas A         A1           
+ 2  2012 Canadá CA    CAN   Las Américas A         A2           
+ 3  2012 Canadá CA    CAN   Las Américas A         A3           
+ 4  2012 Canadá CA    CAN   Las Américas B         B1           
+ 5  2012 Canadá CA    CAN   Las Américas B         B2           
+ 6  2012 Canadá CA    CAN   Las Américas B         B3           
+ 7  2012 Canadá CA    CAN   Las Américas B         B4           
+ 8  2012 Canadá CA    CAN   Las Américas C         C1           
+ 9  2012 Canadá CA    CAN   Las Américas C         C2           
+10  2012 Canadá CA    CAN   Las Américas C         C3           
+# ℹ 290 more rows
+# ℹ 3 more variables: descripcion_categoria <chr>,
+#   descripcion_sub_categoria <chr>, puntaje <int>
+# ℹ Use `print(n = ...)` to see more rows
+```
 
-puntaje_pais %>%
-  filter(pais_territorio == "Canadá")
+`texto_calificacion_pais` es una traducción del original
+`country_rating_texts`:
+
+``` r
+> glimpse(texto_calificacion_pais)
+Rows: 29,587
+Columns: 7
+$ anio          <int> 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 20…
+$ pais          <chr> "Afganistán", "Afganistán", "Afganistán", "Afganistán", …
+$ iso2c         <fct> AF, AF, AF, AF, AF, AF, AF, AF, AF, AF, AF, AF, AF, AF, …
+$ iso3c         <fct> AFG, AFG, AFG, AFG, AFG, AFG, AFG, AFG, AFG, AFG, AFG, A…
+$ continente    <chr> "Asia", "Asia", "Asia", "Asia", "Asia", "Asia", "Asia", …
+$ sub_categoria <fct> Resumen, Desarrollos Clave, Cambio de Calificación, A1, …
+$ detalle       <chr> "La constitución de Afganistán prevé un Estado unitario,…
+```
+
+`estado_calificacion_pais` es una traducción del original
+`country_rating_status`:
+
+``` r
+> glimpse(estado_calificacion_pais)
+Rows: 9,238
+Columns: 9
+$ anio               <int> 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 198…
+$ pais               <chr> "Afganistán", "Afganistán", "Afganistán", "Afganist…
+$ iso2c              <fct> AF, AF, AF, AF, AF, AF, AF, AF, AF, AF, AF, AF, AF,…
+$ iso3c              <fct> AFG, AFG, AFG, AFG, AFG, AFG, AFG, AFG, AFG, AFG, A…
+$ continente         <chr> "Asia", "Asia", "Asia", "Asia", "Asia", "Asia", "As…
+$ derechos_politicos <int> 4, 7, 7, 7, 7, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 7, …
+$ libertades_civiles <int> 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 7, …
+$ estado             <chr> "Parcialmente Libre", "No Libre", "No Libre", "No L…
+$ color              <fct> #a1aafc, #7454a6, #7454a6, #7454a6, #7454a6, #7454a…
 ```
 
 ## Development
