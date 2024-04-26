@@ -5,69 +5,6 @@ library(forcats)
 
 load_all()
 
-# fix 'Is there freedom for nongovernmental organizations, particularly those that are engaged in human rights and governance-related work?'
-
-country_scores <- country_scores %>%
-  mutate(
-    sub_item_description = case_when(
-      sub_item_description == "Is there freedom for nongovernmental organizations, particularly those that are engaged in human rights and governance-related work?" ~ "Is there freedom for nongovernmental organizations, particularly those that are engaged in human rights and governance related work?",
-      TRUE ~ sub_item_description
-    )
-  )
-
-# fix
-# 'Pakistani Kashmir' -> 'Pakistan Kashmir'
-# 'Transnitria' -> 'Transnistria'
-country_scores <- country_scores %>%
-  mutate(
-    country_territory = case_when(
-      country_territory == "Pakistani Kashmir" ~ "Pakistan Kashmir",
-      country_territory == "Transnitria" ~ "Transnistria",
-      TRUE ~ country_territory
-    )
-  )
-
-use_data(country_scores, overwrite = TRUE)
-
-# fix
-# 'Gambia' -> 'The Gambia
-# 'St. Vincent and Grenadines' -> 'Saint Vincent and the Grenadines'
-country_rating_texts <- country_rating_texts %>%
-  mutate(
-    country = case_when(
-      country == "Gambia" ~ "The Gambia",
-      country == "St. Vincent and Grenadines" ~ "St. Vincent and the Grenadines",
-      TRUE ~ country
-    )
-  )
-
-# 'Saint Vincent and the Grenadines' -> 'St. Vincent and the Grenadines'
-country_rating_texts <- country_rating_texts %>%
-  mutate(
-    country = case_when(
-      country == "Saint Vincent and the Grenadines" ~ "St. Vincent and the Grenadines",
-      TRUE ~ country
-    )
-  )
-
-sort(unique(country_rating_texts$country))
-
-country_rating_texts <- country_rating_texts %>%
-  mutate(
-    country = as_factor(country)
-  )
-
-# add continent for 'St. Vincent and the Grenadines'
-country_rating_texts <- country_rating_texts %>%
-  mutate(
-    continent = as_factor(case_when(
-      country == "St. Vincent and the Grenadines" ~ "Americas",
-      TRUE ~ continent
-    ))
-  )
-
-use_data(country_rating_texts, overwrite = TRUE)
-
 # estados ----
 
 estado_calificacion_pais <- country_rating_statuses %>%
