@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">freedomhouse</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2</span>
       </span>
     </div>
 
@@ -45,6 +45,9 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -72,7 +75,7 @@
 <!-- badges: start --><!-- badges: end --><p>The goal of freedomhouse is to ease the usage of the Freedom in the World dataset from Freedom House in R. The Freedom in the World dataset is updated annually and is originally available for download in Excel format.</p>
 <p>Freedom House is best known for political advocacy surrounding issues of Democracy, Political Freedom, and Human Rights. Each of these issues trascends political colours. The Freedom in the World dataset is a comprehensive and widely used measure of political freedom. It is used by academics, journalists, and policy makers alike.</p>
 <p>My added value is to presents all the tables in a really simple to use format and to make all the texts with the justifications for each sub-item scores, that you find in around 1,000 links of the form <a href="https://freedomhouse.org/country/canada/freedom-world/2023" class="external-link uri">https://freedomhouse.org/country/canada/freedom-world/2023</a>, available in a single tidy table. This is useful for text mining and sentiment analysis.</p>
-<p>Another addition of mine was is to add translations, such as the side package <code>casadelalibertad</code>.</p>
+<p>Another addition of mine was is to add translations.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -178,15 +181,11 @@
 <div class="section level2">
 <h2 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
 </h2>
-<p>To verify any changes, run the following commands:</p>
+<p>To verify the changes made to the package, run the following commands:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">document</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">attachment</span><span class="fu">::</span><span class="fu"><a href="https://thinkr-open.github.io/attachment/reference/att_amend_desc.html" class="external-link">att_amend_desc</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Then update the site with:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"docs"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu">altdoc</span><span class="fu">::</span><span class="fu">use_mkdocs</span><span class="op">(</span>theme <span class="op">=</span> <span class="st">"readthedocs"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -208,6 +207,13 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>

@@ -130,7 +130,7 @@ texto_calificacion_pais <- texto_calificacion_pais %>%
   left_join(detalle)
 
 texto_calificacion_pais %>%
-  filter(is.na(detail))
+  filter(is.na(detalle))
 
 texto_calificacion_pais %>%
   distinct(sub_item) %>%
