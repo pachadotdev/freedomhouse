@@ -1,4 +1,5 @@
 library(dplyr)
+library(tidyr)
 library(readxl)
 library(purrr)
 library(forcats)
@@ -29,7 +30,7 @@ estado_calificacion_pais <- estado_calificacion_pais %>%
 estado_calificacion_pais %>%
   filter(is.na(pais))
 
-estado <- read_excel("dev/texts/translation_es/rating_statuses.xlsx")
+estado <- read_excel("dev/texts/translation_es/statuses.xlsx")
 
 estado_calificacion_pais <- estado_calificacion_pais %>%
   left_join(estado)
@@ -67,12 +68,12 @@ puntaje_pais %>%
   filter(is.na(continent))
 
 puntaje_pais <- puntaje_pais %>%
-  left_join(pais, by = c("country_territory" = "country"))
+  left_join(pais, by = "country")
 
 puntaje_pais %>%
   filter(is.na(pais))
 
-descripcion_item <- read_excel("dev/texts/translation_es/score_items.xlsx")
+descripcion_item <- read_excel("dev/texts/translation_es/items_description.xlsx")
 
 puntaje_pais <- puntaje_pais %>%
   left_join(descripcion_item)
@@ -80,10 +81,15 @@ puntaje_pais <- puntaje_pais %>%
 puntaje_pais %>%
   filter(is.na(descripcion_categoria))
 
-descripcion_sub_item <- read_excel("dev/texts/translation_es/score_sub_items.xlsx")
+sub_item <- read_excel("dev/texts/translation_es/sub_items.xlsx")
+descripcion_sub_item <- read_excel("dev/texts/translation_es/sub_items_description.xlsx")
 
 puntaje_pais <- puntaje_pais %>%
+  left_join(sub_item) %>%
   left_join(descripcion_sub_item)
+
+puntaje_pais %>%
+  filter(is.na(sub_categoria))
 
 puntaje_pais %>%
   filter(is.na(descripcion_sub_categoria))
@@ -117,7 +123,7 @@ texto_calificacion_pais %>%
   filter(is.na(continente))
 
 detalle <- map_df(
-  list.files("dev/texts/translation_es/", full.names = TRUE, pattern = "rating_details"),
+  list.files("dev/texts/translation_es/", full.names = TRUE, pattern = "details_"),
   ~ read_excel(.x)
 )
 
@@ -131,15 +137,13 @@ texto_calificacion_pais %>%
   distinct(sub_item) %>%
   pull()
 
-calificacion_sub_items <- read_excel("dev/texts/translation_es/rating_sub_items.xlsx")
-
 texto_calificacion_pais <- texto_calificacion_pais %>%
-  left_join(calificacion_sub_items)
+  left_join(sub_item)
 
 texto_calificacion_pais %>%
   filter(is.na(sub_item))
 
-calificacion_sub_items %>%
+sub_item %>%
   pull(sub_categoria)
 
 # reorder sub_item levels
@@ -154,7 +158,30 @@ texto_calificacion_pais <- texto_calificacion_pais %>%
   )
 
 texto_calificacion_pais <- texto_calificacion_pais %>%
-  select(anio, pais, iso2c, iso3c, continente, sub_categoria, detalle)
+  left_join(
+    country_rating_text %>%
+      distinct(item, item_description) %>%
+      drop_na()
+  ) %>%
+  left_join(descripcion_item) %>%
+  left_join(descripcion_sub_item)
+
+# this is ok
+texto_calificacion_pais %>%
+  filter(is.na(descripcion_categoria)) %>%
+  distinct(item_description, descripcion_categoria)
+
+# also this
+texto_calificacion_pais %>%
+  filter(is.na(descripcion_sub_categoria)) %>%
+  distinct(sub_item, descripcion_sub_categoria)
+
+texto_calificacion_pais <- texto_calificacion_pais %>%
+  select(
+    anio, pais, iso2c, iso3c, continente,
+    categoria = item, sub_categoria,
+    descripcion_categoria, descripcion_sub_categoria, detalle
+  )
 
 texto_calificacion_pais <- texto_calificacion_pais %>%
   mutate(pais = as_factor(pais))
@@ -164,5 +191,27 @@ texto_calificacion_pais %>%
 
 texto_calificacion_pais %>%
   filter(pais == "Chile", anio == 2022L)
+
+descripcion_categoria_order <- texto_calificacion_pais %>%
+  distinct(categoria, descripcion_categoria) %>%
+  drop_na() %>%
+  pull(descripcion_categoria)
+
+descripcion_sub_categoria_order <- texto_calificacion_pais %>%
+  distinct(sub_categoria, descripcion_sub_categoria) %>%
+  drop_na() %>%
+  pull(descripcion_sub_categoria)
+
+detalle_order <- texto_calificacion_pais %>%
+  distinct(sub_categoria, detalle) %>%
+  drop_na() %>%
+  pull(detalle)
+
+texto_calificacion_pais <- texto_calificacion_pais %>%
+  mutate(
+    descripcion_categoria = factor(descripcion_categoria, levels = descripcion_categoria_order),
+    descripcion_sub_categoria = factor(descripcion_sub_categoria, levels = descripcion_sub_categoria_order),
+    detalle = factor(detalle, levels = detalle_order)
+  )
 
 save(texto_calificacion_pais, file = "translations/es/data/texto_calificacion_pais.rda", compress = "xz")

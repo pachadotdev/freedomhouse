@@ -46,7 +46,7 @@
 #'
 #' \itemize{
 #'  \item \code{year}: Year of observation (2012-2023).
-#'  \item \code{country_territory}: Country or territory name.
+#'  \item \code{country}: Country (or territory) name.
 #'  \item \code{iso2c}: ISO 2-character country code. Abkhazia, Crimea, Eastern Donbas, Kosovo,
 #'   Micronesia, Nagorno-Karabakh, Somaliland, South Ossetia, Tibet, Transnistria do not have
 #'   unambiguous matches and appear as 'NA'.
@@ -83,15 +83,18 @@
 #'  Micronesia, Nagorno-Karabakh, Somaliland, South Ossetia, Tibet, Transnistria do not have
 #'  unambiguous matches and appear as 'NA'.
 #'  \item \code{continent}: Continent name.
+#'  \item \code{item}: Item letter (A-G).
 #'  \item \code{sub_item}: Sub-item letter and number (A1-G4) besides 'Overview', 'Key Developments'
 #'  'Rating Change', 'Trend Arrow', and 'Notes'.
+#'  \item \code{item_description}: Description of the item.
+#'  \item \code{sub_item_description}: Description of the sub-item.
 #'  \item \code{detail}: Details and justification for the assigned score in the sub-item.
 #' }
 #'
 #' @docType data
 #' @name country_rating_text
 #' @usage country_rating_text
-#' @format A \code{data frame} with 29,841 observations and 7 variables.
+#' @format A \code{data frame} with 33,601 observations and 10 variables.
 #' @source Own creation, based on texts scraped from Freedom House.
 #' @references Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
 #' Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.

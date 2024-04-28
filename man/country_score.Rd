@@ -26,7 +26,7 @@ obtains a political rights rating of 1, from 30 to 35 points a rating of 2, and 
 
 \itemize{
 \item \code{year}: Year of observation (2012-2023).
-\item \code{country_territory}: Country or territory name.
+\item \code{country}: Country (or territory) name.
 \item \code{iso2c}: ISO 2-character country code. Abkhazia, Crimea, Eastern Donbas, Kosovo,
 Micronesia, Nagorno-Karabakh, Somaliland, South Ossetia, Tibet, Transnistria do not have
 unambiguous matches and appear as 'NA'.

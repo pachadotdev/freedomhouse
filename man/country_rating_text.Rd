@@ -5,7 +5,7 @@
 \alias{country_rating_text}
 \title{Freedom in the World Sub-Items Texts, 2017-2023}
 \format{
-A \code{data frame} with 29,841 observations and 7 variables.
+A \code{data frame} with 33,601 observations and 10 variables.
 }
 \source{
 Own creation, based on texts scraped from Freedom House.
@@ -30,8 +30,11 @@ unambiguous matches and appear as 'NA'.
 Micronesia, Nagorno-Karabakh, Somaliland, South Ossetia, Tibet, Transnistria do not have
 unambiguous matches and appear as 'NA'.
 \item \code{continent}: Continent name.
+\item \code{item}: Item letter (A-G).
 \item \code{sub_item}: Sub-item letter and number (A1-G4) besides 'Overview', 'Key Developments'
 'Rating Change', 'Trend Arrow', and 'Notes'.
+\item \code{item_description}: Description of the item.
+\item \code{sub_item_description}: Description of the sub-item.
 \item \code{detail}: Details and justification for the assigned score in the sub-item.
 }
 }

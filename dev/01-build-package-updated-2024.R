@@ -429,10 +429,7 @@ country_score <- country_score %>%
 
 country_score <- country_score %>%
   mutate(
-    sub_item_description = case_when(
-      sub_item_description == "Is there freedom for nongovernmental organizations, particularly those that are engaged in human rights and governance-related work?" ~ "Is there freedom for nongovernmental organizations, particularly those that are engaged in human rights and governance related work?",
-      TRUE ~ sub_item_description
-    )
+    sub_item_description = str_replace_all(sub_item_description, "governance-related", "governance related")
   )
 
 # fix
@@ -451,6 +448,21 @@ country_score %>%
   filter(is.na(iso2c)) %>%
   distinct(country_territory) %>%
   mutate(iso2c = countrycode(country_territory, origin = "country.name", destination = "iso2c"))
+
+# put sub_item_description as a factor
+
+sub_item_order <- country_score %>%
+  distinct(sub_item, sub_item_description) %>%
+  # arrange(sub_item) %>%
+  pull(sub_item_description)
+
+country_score <- country_score %>%
+  mutate(sub_item_description = factor(sub_item_description, levels = sub_item_order))
+
+levels(country_score$sub_item_description)
+
+country_score <- country_score %>%
+  rename(country = country_territory)
 
 use_data(country_score, overwrite = TRUE, compress = "xz")
 
@@ -476,60 +488,75 @@ countries <- str_replace_all(countries, "\\.", "")
 countries <- str_replace_all(countries, "the-gambia", "gambia")
 countries <- str_replace_all(countries, "st-vincent-and-the-grenadines", "st-vincent-and-grenadines")
 
-countries <- sort(unique(countries))colnames(remote_tbl) <- c("country", "total_score", "political_rights", "civil_liberties")
+countries <- sort(unique(countries))
 
+remote_tbl_rds <- "dev/remote_tbl.rds"
 
-# now read the table from https://freedomhouse.org/countries/freedom-world/scores
-remote_tbl <- read_html("https://freedomhouse.org/countries/freedom-world/scores") %>%
-  html_table(fill = TRUE) %>%
-  as.data.frame() %>%
-  as_tibble()
+if (!file.exists(remote_tbl_rds)) {
+  # now read the table from https://freedomhouse.org/countries/freedom-world/scores
+  remote_tbl <- read_html("https://freedomhouse.org/countries/freedom-world/scores") %>%
+    html_table(fill = TRUE) %>%
+    as.data.frame() %>%
+    as_tibble()
 
-colnames(remote_tbl) <- c("country", "total_score", "political_rights", "civil_liberties")
+  colnames(remote_tbl) <- c("country", "total_score", "political_rights", "civil_liberties")
 
-remote_tbl <- remote_tbl %>%
-  mutate(
-    country = str_to_lower(country),
-    country = str_replace_all(country, " ", "-"),
-    country = str_replace_all(country, "\\*", ""),
-    country = str_replace_all(country, "\\.", ""),
-    country = str_replace_all(country, "'", ""),
-    country = iconv(country, "", "ASCII//TRANSLIT", sub = "")
-  )
+  remote_tbl <- remote_tbl %>%
+    mutate(
+      country = str_to_lower(country),
+      country = str_replace_all(country, " ", "-"),
+      country = str_replace_all(country, "\\*", ""),
+      country = str_replace_all(country, "\\.", ""),
+      country = str_replace_all(country, "'", ""),
+      country = iconv(country, "", "ASCII//TRANSLIT", sub = "")
+    )
 
-# same fix as for the urls
-remote_tbl <- remote_tbl %>%
-  mutate(
-    country = str_replace_all(country, "the-gambia", "gambia"),
-    country = str_replace_all(country, "st-vincent-and-the-grenadines", "st-vincent-and-grenadines")
-  ) %>%
-  arrange(country)
+  # same fix as for the urls
+  remote_tbl <- remote_tbl %>%
+    mutate(
+      country = str_replace_all(country, "the-gambia", "gambia"),
+      country = str_replace_all(country, "st-vincent-and-the-grenadines", "st-vincent-and-grenadines")
+    ) %>%
+    arrange(country)
+
+  saveRDS(remote_tbl, remote_tbl_rds)
+} else {
+  remote_tbl <- readRDS(remote_tbl_rds)
+}
 
 unique(remote_tbl$country)
 
 countries <- countries[countries %in% remote_tbl$country]
 countries <- unique(sort(countries))
 
-country_text <- list()
+country_text_rds <- "dev/country_text.rds"
 
-for (i in seq_along(countries)) {
-  country <- countries[i]
-  for (year in 2018:2024) {
-    url <- str_replace_all(baseurl, "/x", paste0("/", country))
-    url <- str_replace_all(url, "/y/", paste0("/", as.character(year), "/"))
-    print(url)
-    text <- try(read_html(url))
+if (!file.exists(country_text_rds)) {
+  country_text <- list()
 
-    # if error, go to next
-    if (inherits(text, "try-error")) {
-      next
+  for (i in seq_along(countries)) {
+    country <- countries[i]
+    for (year in 2018:2024) {
+      url <- str_replace_all(baseurl, "/x", paste0("/", country))
+      url <- str_replace_all(url, "/y/", paste0("/", as.character(year), "/"))
+      print(url)
+      text <- try(read_html(url))
+
+      # if error, go to next
+      if (inherits(text, "try-error")) {
+        next
+      }
+
+      # get the text from the div field field--name-field-dataset field--type-entity-reference field--label-hidden field__item
+      country_text[[paste0(country, "_", year)]] <- text %>%
+        html_nodes(".field--name-field-dataset.field--type-entity-reference.field--label-hidden.field__item") %>%
+        html_text()
     }
-
-    # get the text from the div field field--name-field-dataset field--type-entity-reference field--label-hidden field__item
-    country_text[[paste0(country, "_", year)]] <- text %>%
-      html_nodes(".field--name-field-dataset.field--type-entity-reference.field--label-hidden.field__item") %>%
-      html_text()
   }
+
+  saveRDS(country_text, country_text_rds)
+} else {
+  country_text <- readRDS(country_text_rds)
 }
 
 country_text <- country_text %>%
@@ -597,12 +624,50 @@ country_score_items %>%
 # "Do individuals enjoy equality of opportunity and freedom from economic exploitation?"
 # in some cases
 
+# other questions also have variations
+
 country_text <- country_text %>%
   map(~ str_replace_all(
     .x,
     "Do individuals enjoy equality of opportunity and freedom from economic exploitation?",
     "END G3 BEGIN G4"
+  )) %>%
+  map(~ str_replace_all(
+    .x,
+    "Do various segments of the population \\(including ethnic, religious, gender, LGBT, and other relevant groups\\) have full political rights and electoral opportunities?",
+    "END B3 BEGIN B4"
+  )) %>%
+  map(~ str_replace_all(
+    .x,
+    "Do various segments of the population \\(including ethnic, racial, religious, gender, LGBT\\+, and other relevant groups\\) have full political rights and electoral opportunities?",
+    "END B3 BEGIN B4"
+  )) %>%
+  map(~ str_replace_all(
+    .x,
+    "Are the people’s political choices free from domination by the military, foreign powers, religious hierarchies, economic oligarchies, or any other powerful group that is not democratically accountable?",
+    "END B2 BEGIN B3"
+  )) %>%
+  map(~ str_replace_all(
+    .x,
+    "Are the people’s political choices free from domination by forces that are external to the political sphere, or by political forces that employ extrapolitical means?",
+    "END B2 BEGIN B3"
+  )) %>%
+  map(~ str_replace_all(
+    .x,
+    "Is there freedom for nongovernmental organizations, particularly those that are engaged in human rights– and governance-related work?",
+    "END E1 BEGIN E2"
+  )) %>%
+  map(~ str_replace_all(
+    .x,
+    "Add Q Is the government or occupying power deliberately changing the ethnic composition of a country or territory so as to destroy a culture or tip the political balance in favor of another group?",
+    "END C3 BEGIN C4"
   ))
+
+# find text matching "Is there freedom for nongovernmental organizations, particularly those"
+country_text %>%
+  map(~ str_detect(.x, "Is the government or occupying power deliberately")) %>%
+  map_lgl(any) %>%
+  which()
 
 country_text$canada_2024
 
@@ -617,6 +682,8 @@ country_rating_text <- map_df(
       str_remove("[0-9]\\.[0-9]{3} [0-9]\\.[0-9]{3}") %>%
       # remove 1.00-4.00 pts0-4 pts and END
       str_remove("1.00-4.00 pts0-4 pts") %>%
+      str_remove("-[0-9]\\.[0-9]{2}-[0-9] ") %>%
+      str_remove("[0-9]\\.[0-9]{3} ") %>%
       str_remove(" END") %>%
       # replace KEY DEVELOPMENTS in XXXX
       str_replace_all("KEY DEVELOPMENTS in [0-9]{4}", "KEY_DEVELOPMENTS")
@@ -928,7 +995,8 @@ country_rating_text <- country_rating_text %>%
   )
 
 country_rating_text %>%
-  filter(sub_item == "")
+  filter(sub_item == "") %>%
+  pull(detail)
 
 # Gambia 2017: remove "Status Change, Rating Change " from detail and add "Status Change" to sub_item
 country_rating_text <- country_rating_text %>%
@@ -1049,21 +1117,83 @@ country_rating_text %>%
   distinct(country) %>%
   mutate(iso2c = countrycode(country, origin = "country.name", destination = "iso2c"))
 
+# add sub_item description
+country_rating_text <- country_rating_text %>%
+  left_join(country_score_items, by = "sub_item") %>%
+  select(
+    year:continent, item, sub_item, item_description, sub_item_description,
+    detail
+  )
+
+country_rating_text %>%
+  select(sub_item, sub_item_description) %>%
+  distinct() %>%
+  filter(is.na(sub_item_description))
+
+country_rating_text <- country_rating_text %>%
+  mutate(
+    sub_item_description = case_when(
+      sub_item == "C4" ~ "(Added Question) Is the government or occupying power deliberately changing the ethnic composition of a country or territory so as to destroy a culture or tip the political balance in favor of another group?",
+      TRUE ~ sub_item_description
+    )
+  )
+
+country_rating_text <- country_rating_text %>%
+  mutate(
+    item = as_factor(item),
+    sub_item = as_factor(sub_item),
+    item_description = as_factor(item_description)
+  ) %>%
+  mutate(
+    sub_item = fct_relevel(sub_item, "Overview"),
+    sub_item = fct_relevel(sub_item, "Key Developments", after = 1L),
+    sub_item = fct_relevel(sub_item, "Status Change", after = 2L),
+    sub_item = fct_relevel(sub_item, "Rating Change", after = 3L),
+    sub_item = fct_relevel(sub_item, "Trend Arrow", after = 4L),
+    sub_item = fct_relevel(sub_item, "Notes", after = 5L),
+    sub_item = fct_relevel(sub_item, "C4", after = 16L)
+  )
+
+sub_item_description_order <- country_rating_text %>%
+  distinct(sub_item, sub_item_description) %>%
+  drop_na() %>%
+  # arrange(sub_item) %>%
+  pull(sub_item_description) %>%
+  str_replace_all("governance-related", "governance related")
+
+country_rating_text <- country_rating_text %>%
+  mutate(
+    sub_item_description = str_replace_all(sub_item_description, "governance-related", "governance related")
+  ) %>%
+  mutate(
+    sub_item_description = factor(sub_item_description, levels = sub_item_description_order)
+  )
+
+detail_order <- country_rating_text %>%
+  distinct(sub_item, detail) %>%
+  # arrange(sub_item) %>%
+  pull(detail)
+
+country_rating_text <- country_rating_text %>%
+  mutate(
+    detail = factor(detail, levels = detail_order)
+  )
+
 use_data(country_rating_text, overwrite = TRUE, compress = "xz")
 
 # Configure package and test ----
 
-use_cc_license("by-nc-sa") # usethis version from https://github.com/r-lib/usethis/pull/1855
-use_build_ignore("dev")
-use_build_ignore("README.html")
-use_build_ignore("README_files")
-use_build_ignore(".github")
-use_git_ignore(".Rproj.user")
-use_git_ignore(".Rhistory")
-use_git_ignore("README.html")
-use_git_ignore("README_files")
-document()
-check()
+# use_cc_license("by-nc-sa") # usethis version from https://github.com/r-lib/usethis/pull/1855
+# use_build_ignore("dev")
+# use_build_ignore("README.html")
+# use_build_ignore("README_files")
+# use_build_ignore(".github")
+# use_git_ignore(".Rproj.user")
+# use_git_ignore(".Rhistory")
+# use_git_ignore("README.html")
+# use_git_ignore("README_files")
+# document()
+# check()
 
-use_news_md()
-use_readme_rmd()
+# use_news_md()
+# use_readme_rmd()
