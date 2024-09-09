@@ -42,6 +42,6 @@ highest degree of Freedom and seven the lowest).
 \references{
 Freedom House. 2024. Freedom in the World 2024: The Mounting Damage of Flawed Elections and Armed Conflict.
 Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2024/mounting-damage-flawed-elections-and-armed-conflict.
-Accessed 2024-04-25.
+Accessed 2024-09-08.
 }
 \keyword{datasets}

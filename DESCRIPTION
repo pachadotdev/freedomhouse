@@ -1,6 +1,6 @@
 Package: freedomhouse
-Title: Freedom House's Freedom in the World
-Version: 0.3
+Title: Freedom House Tidy Datasets
+Version: 0.4.0
 Authors@R: c(
   person("Mauricio", "Vargas Sepulveda",
     role = c("aut","cre","cph"), 
@@ -11,8 +11,7 @@ Authors@R: c(
 Description: Since 1973, Freedom House has assessed the condition of political 
   rights and civil liberties around the world. It is used on a regular basis by 
   policymakers, journalists, academics, activists, and many others. This
-  package makes it easier to use the Freedom House's Freedom in the World data
-  within R.
+  package makes it easier to use the Freedom House data within R.
 URL: https://pacha.dev/freedomhouse/
 BugReports: https://github.com/pachadotdev/freedomhouse/issues
 License: CC0

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Freedom House Datasets in R
+# Freedom House Datasets in R <img src="man/figures/logo.svg" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -34,7 +34,8 @@ that you find in around 1,000 links of the form
 https://freedomhouse.org/country/canada/freedom-world/2023, available in a
 single tidy table. This is useful for text mining and sentiment analysis.
 
-Another addition of mine was is to add translations.
+Another addition of mine was is to add translations. This work is not
+affiliated with Freedom House.
 
 ## Installation
 

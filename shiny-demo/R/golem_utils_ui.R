@@ -17,7 +17,7 @@ col_6 <- function(...) {
 list_countries <- function() {
   out <- list()
 
-  daux <- freedomhouse::country_rating_statuses %>%
+  daux <- freedomhouse::country_rating_status %>%
     distinct(
       !!sym("continent"),
       !!sym("country")

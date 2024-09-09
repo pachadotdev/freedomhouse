@@ -60,7 +60,8 @@ country_rating_status %>%
 
 # save multiple files of 5,000 rows each
 detail <- country_rating_text %>%
-  select(detail)
+  select(detail) %>%
+  distinct()
 
 detail %>%
   split(1:nrow(detail) %/% 5000) %>%

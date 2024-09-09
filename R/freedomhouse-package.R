@@ -30,7 +30,7 @@
 #' @source Adapted from Freedom House.
 #' @references Freedom House. 2024. Freedom in the World 2024: The Mounting Damage of Flawed Elections and Armed Conflict.
 #' Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2024/mounting-damage-flawed-elections-and-armed-conflict.
-#' Accessed 2024-04-25.
+#' Accessed 2024-09-08.
 "country_rating_status"
 
 #' Freedom in the World Dissaggregated Scores, 2012-2023
@@ -94,9 +94,9 @@
 #' @docType data
 #' @name country_rating_text
 #' @usage country_rating_text
-#' @format A \code{data frame} with 33,601 observations and 10 variables.
+#' @format A \code{data frame} with 36,093 observations and 10 variables.
 #' @source Own creation, based on texts scraped from Freedom House.
 #' @references Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
 #' Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
-#' Accessed 2024-04-25.
+#' Accessed 2024-09-08.
 "country_rating_text"

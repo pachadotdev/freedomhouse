@@ -4,9 +4,9 @@
 \name{freedomhouse-package}
 \alias{freedomhouse}
 \alias{freedomhouse-package}
-\title{freedomhouse: Version en Castellano de los Datos de 'Freedom House's Freedom in the World'}
+\title{freedomhouse: Version en Castellano de los Datos Ordenados de 'Freedom House'}
 \description{
-Desde 1973, Freedom House evalúa la situación de los derechos políticos y las libertades civiles en todo el mundo. La utilizan regularmente responsables de la formulación de políticas, periodistas, académicos, activistas y muchos otros. Este paquete facilita el uso de los datos de Freedom House's Freedom in the World en R. English: Since 1973, Freedom House has assessed the condition of political rights and civil liberties around the world. It is used on a regular basis by policymakers, journalists, academics, activists, and many others. This package makes it easier to use the Freedom House's Freedom in the World data within R.
+Desde 1973, Freedom House evalúa la situación de los derechos políticos y las libertades civiles en todo el mundo. La utilizan regularmente responsables de la formulación de políticas, periodistas, académicos, activistas y muchos otros. Este paquete facilita el uso de los datos de 'Freedom House' en R.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,13 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Mauricio Vargas \email{m.sepulveda@mail.utoronto.ca} (\href{https://orcid.org/0000-0003-1017-7574}{ORCID})
+\strong{Maintainer}: Mauricio Vargas Sepulveda \email{m.sepulveda@mail.utoronto.ca} (\href{https://orcid.org/0000-0003-1017-7574}{ORCID}) [copyright holder]
+
+Other contributors:
+\itemize{
+  \item Marta Kolczynska [contributor]
+  \item  Freedom House [data contributor]
+}
 
 }
 \keyword{internal}

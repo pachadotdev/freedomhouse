@@ -23,7 +23,7 @@ app_server <- function(input, output, session) {
   })
 
   country_tbl <- reactive({    
-    daux <- freedomhouse::country_rating_statuses %>%
+    daux <- freedomhouse::country_rating_status %>%
       filter(
         !!sym("year") %in% seq(selected_year()[1], selected_year()[2]),
         !!sym("country") == selected_country()

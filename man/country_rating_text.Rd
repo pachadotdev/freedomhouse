@@ -5,7 +5,7 @@
 \alias{country_rating_text}
 \title{Freedom in the World Sub-Items Texts, 2017-2023}
 \format{
-A \code{data frame} with 33,601 observations and 10 variables.
+A \code{data frame} with 36,093 observations and 10 variables.
 }
 \source{
 Own creation, based on texts scraped from Freedom House.
@@ -42,6 +42,6 @@ unambiguous matches and appear as 'NA'.
 \references{
 Freedom House. 2023. Freedom in the World 2023: Marking 50 Years in the Struggle for Democracy.
 Washington, DC: Freedom House. https://freedomhouse.org/report/freedom-world/2023/marking-50-years.
-Accessed 2024-04-25.
+Accessed 2024-09-08.
 }
 \keyword{datasets}

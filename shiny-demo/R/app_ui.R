@@ -25,8 +25,8 @@ app_ui <- function(request) {
         sliderInput(
           inputId = "year",
           label = "Select a year",
-          min = min(freedomhouse::country_rating_statuses$year, na.rm = TRUE),
-          max = max(freedomhouse::country_rating_statuses$year, na.rm = TRUE),
+          min = min(freedomhouse::country_rating_status$year, na.rm = TRUE),
+          max = max(freedomhouse::country_rating_status$year, na.rm = TRUE),
           value = c(2000, 2022),
           step = 1
         )

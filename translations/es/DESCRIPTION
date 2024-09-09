@@ -1,20 +1,18 @@
 Package: freedomhouse
-Title: Version en Castellano de los Datos de 'Freedom House's Freedom in
-    the World'
-Version: 0.3
-Authors@R:
-    person("Mauricio", "Vargas", , "m.sepulveda@mail.utoronto.ca", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0003-1017-7574"))
+Title: Version en Castellano de los Datos Ordenados de 'Freedom House'
+Version: 0.4.0
+Authors@R: c(
+    person("Mauricio", "Vargas Sepulveda",
+        role = c("aut","cre","cph"), 
+        email = "m.sepulveda@mail.utoronto.ca",
+        comment = c(ORCID = "0000-0003-1017-7574")),
+    person("Marta", "Kolczynska", role = "ctb"),
+    person(family = "Freedom House", role = "dtc"))
 Description: Desde 1973, Freedom House evalúa la situación de los derechos
     políticos y las libertades civiles en todo el mundo. La utilizan
     regularmente responsables de la formulación de políticas, periodistas,
     académicos, activistas y muchos otros. Este paquete facilita el uso de
-    los datos de Freedom House's Freedom in the World en R.  English:
-    Since 1973, Freedom House has assessed the condition of political
-    rights and civil liberties around the world. It is used on a regular
-    basis by policymakers, journalists, academics, activists, and many
-    others. This package makes it easier to use the Freedom House's
-    Freedom in the World data within R.
+    los datos de 'Freedom House' en R.
 License: CC0
 URL: https://pacha.dev/freedomhouse/
 BugReports: https://github.com/pachadotdev/freedomhouse/issues

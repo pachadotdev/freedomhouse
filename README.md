@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Freedom House Datasets in R
+# Freedom House Datasets in R <img src="man/figures/logo.svg" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 
@@ -25,7 +25,8 @@ sub-item scores, that you find in around 1,000 links of the form
 in a single tidy table. This is useful for text mining and sentiment
 analysis.
 
-Another addition of mine was is to add translations.
+Another addition of mine was is to add translations. This work is not
+affiliated with Freedom House.
 
 ## Installation
 
@@ -89,7 +90,7 @@ country_rating_text %>%
   ) %>%
   pull(detail)
 #> [1] Trade unions and business associations enjoy high levels of membership and are well organized.
-#> 27551 Levels: Afghanistan's political rights rating improved from 6 to 5 due to increased opposition political activity ahead of scheduled elections, as well as modest gains in government transparency. ...
+#> 29256 Levels: Afghanistan's political rights rating improved from 6 to 5 due to increased opposition political activity ahead of scheduled elections, as well as modest gains in government transparency. ...
 ```
 
 ## Shiny

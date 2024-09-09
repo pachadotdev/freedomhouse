@@ -51,6 +51,9 @@ estado_calificacion_pais <- estado_calificacion_pais %>%
     estado = as_factor(estado)
   )
 
+estado_calificacion_pais %>%
+  distinct()
+
 save(estado_calificacion_pais,
   file = "translations/es/data/estado_calificacion_pais.rda",
   compress = "xz"
@@ -103,6 +106,9 @@ puntaje_pais <- puntaje_pais %>%
 
 unique(puntaje_pais$sub_categoria)
 
+puntaje_pais %>%
+  distinct()
+
 save(puntaje_pais, file = "translations/es/data/puntaje_pais.rda", compress = "xz")
 
 # detalles ----
@@ -125,7 +131,8 @@ texto_calificacion_pais %>%
 detalle <- map_df(
   list.files("dev/texts/translation_es/", full.names = TRUE, pattern = "details_"),
   ~ read_excel(.x)
-)
+) %>%
+  distinct()
 
 texto_calificacion_pais <- texto_calificacion_pais %>%
   left_join(detalle)
@@ -213,5 +220,8 @@ texto_calificacion_pais <- texto_calificacion_pais %>%
     descripcion_sub_categoria = factor(descripcion_sub_categoria, levels = descripcion_sub_categoria_order),
     detalle = factor(detalle, levels = detalle_order)
   )
+
+texto_calificacion_pais %>%
+  distinct()
 
 save(texto_calificacion_pais, file = "translations/es/data/texto_calificacion_pais.rda", compress = "xz")
