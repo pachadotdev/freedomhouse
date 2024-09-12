@@ -25,6 +25,10 @@ sub-item scores, that you find in around 1,000 links of the form
 in a single tidy table. This is useful for text mining and sentiment
 analysis.
 
+I provided an Excel version of the final result in addition to the R
+datasets. It can be downloaded
+[here](https://github.com/pachadotdev/freedomhouse/raw/main/exported-spreadsheets/freedom-house-excel.zip).
+
 Another addition of mine was is to add translations. This work is not
 affiliated with Freedom House.
 
